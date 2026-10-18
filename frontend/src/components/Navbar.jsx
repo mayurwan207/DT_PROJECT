@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Star, Sparkles, Moon, Sun } from 'lucide-react';
+import { Flame, Star, Sparkles, Moon, Sun, LogOut } from 'lucide-react';
 
 /**
  * Navbar Component for MessVerse
- * Includes Deep Midnight Blue Dark Mode & Clean White Mode Toggle
+ * Includes Deep Midnight Blue Dark Mode & Clean White Mode Toggle, plus Logout
  */
 export default function Navbar({
   role = 'student',
@@ -17,6 +17,7 @@ export default function Navbar({
   },
   theme = 'dark',
   onToggleTheme,
+  onLogout,
 }) {
   const [internalRole, setInternalRole] = useState(role);
   const currentRole = onRoleChange ? role : internalRole;
@@ -141,6 +142,20 @@ export default function Navbar({
               </span>
             </div>
           </div>
+
+          {/* Logout Button */}
+          {onLogout && (
+            <button
+              type="button"
+              onClick={onLogout}
+              className="p-2 rounded-xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/60 dark:bg-rose-950/30 hover:bg-rose-100 dark:hover:bg-rose-900/50 text-rose-600 dark:text-rose-400 shadow-sm transition-all cursor-pointer flex items-center justify-center gap-1.5 text-xs font-bold"
+              title="Log Out & Switch User"
+              aria-label="Log Out"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span className="hidden md:inline">Exit</span>
+            </button>
+          )}
         </div>
       </div>
     </header>

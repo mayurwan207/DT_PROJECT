@@ -13,6 +13,7 @@ import MealRsvp from './components/MealRsvp';
 import FeedbackForm from './components/FeedbackForm';
 import Leaderboard from './components/Leaderboard';
 import StaffDashboard from './components/StaffDashboard';
+import LoginPage from './components/LoginPage';
 
 const TODAY_DATE = '2026-10-15';
 
@@ -32,21 +33,88 @@ const WEEK_DAYS = [
  * Deep Midnight Blue Dark Mode & Clean Light Theme Switcher
  */
 function App() {
-  const [role, setRole] = useState('student'); // 'student' | 'staff'
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    try {
+      return localStorage.getItem('messverse_auth') === 'true';
+    } catch {
+      return false;
+    }
+  });
+
+  const [role, setRole] = useState(() => {
+    try {
+      return localStorage.getItem('messverse_role') || 'student';
+    } catch {
+      return 'student';
+    }
+  }); // 'student' | 'staff'
+
   const [theme, setTheme] = useState('dark'); // 'dark' (Deep Blue) | 'light' (Clean White)
   const [rsvpSyncVersion, setRsvpSyncVersion] = useState(0);
 
-  const [user, setUser] = useState({
-    id: 1,
-    name: 'Aarav Sharma',
-    avatar: 'AS',
-    streak_count: 12,
-    xp_points: 450,
-    review_count: 5,
+  const [user, setUser] = useState(() => {
+    if (role === 'staff') {
+      return {
+        id: 99,
+        name: 'Chef Vikram (Mess Owner)',
+        avatar: 'CV',
+        streak_count: 99,
+        xp_points: 2500,
+        review_count: 0,
+      };
+    }
+    return {
+      id: 1,
+      name: 'Aarav Sharma (Student)',
+      avatar: 'AS',
+      streak_count: 12,
+      xp_points: 450,
+      review_count: 5,
+    };
   });
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const handleLogin = ({ role: newRole }) => {
+    setRole(newRole);
+    if (newRole === 'staff') {
+      setUser({
+        id: 99,
+        name: 'Chef Vikram (Mess Owner)',
+        avatar: 'CV',
+        streak_count: 99,
+        xp_points: 2500,
+        review_count: 0,
+      });
+    } else {
+      setUser({
+        id: 1,
+        name: 'Aarav Sharma (Student)',
+        avatar: 'AS',
+        streak_count: 12,
+        xp_points: 450,
+        review_count: 5,
+      });
+    }
+    setIsAuthenticated(true);
+    try {
+      localStorage.setItem('messverse_auth', 'true');
+      localStorage.setItem('messverse_role', newRole);
+    } catch {
+      // localStorage may be disabled
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    try {
+      localStorage.removeItem('messverse_auth');
+      localStorage.removeItem('messverse_role');
+    } catch {
+      // localStorage may be disabled
+    }
   };
 
   // Handle Clean Plate check-in from StreakCard
@@ -80,6 +148,22 @@ function App() {
     }
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div
+        className={`min-h-screen flex flex-col font-sans transition-colors duration-300 selection:bg-emerald-500 selection:text-white ${
+          theme === 'dark' ? 'theme-blue-dark dark' : 'theme-light-container'
+        }`}
+      >
+        <LoginPage
+          onLogin={handleLogin}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className={`min-h-screen flex flex-col font-sans transition-colors duration-300 selection:bg-emerald-500 selection:text-white ${
@@ -93,6 +177,7 @@ function App() {
         user={user}
         theme={theme}
         onToggleTheme={toggleTheme}
+        onLogout={handleLogout}
       />
 
       {/* ── Main Viewport Container ───────────────────────────────────── */}
