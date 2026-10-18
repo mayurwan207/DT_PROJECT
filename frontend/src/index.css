@@ -1,0 +1,78 @@
+/* ============================================================
+   index.css — MessVerse Global Design System
+   Neo-Brutalism + Glassmorphism Fusion
+   Palette:
+     Cyber Emerald   #10B981
+     Electric Amber  #F59E0B
+     Neon Violet     #8B5CF6
+     Crimson Red     #EF4444
+     Slate Dark      #0F172A
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Brand colours */
+  --emerald:      #10B981;
+  --emerald-dim:  #065F46;
+  --amber:        #F59E0B;
+  --amber-dim:    #78350F;
+  --violet:       #8B5CF6;
+  --violet-dim:   #4C1D95;
+  --crimson:      #EF4444;
+  --slate-dark:   #0F172A;
+  --slate-900:    #0F172A;
+  --slate-800:    #1E293B;
+  --slate-700:    #334155;
+  --slate-400:    #94A3B8;
+  --slate-200:    #E2E8F0;
+  --white:        #FFFFFF;
+
+  /* Typography */
+  --font-ui:      'Inter', system-ui, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', sans-serif;
+
+  /* Glass card */
+  --glass-bg:     rgba(15, 23, 42, 0.72);
+  --glass-border: rgba(16, 185, 129, 0.35);
+  --glass-blur:   12px;
+
+  /* Glow shadows */
+  --glow-emerald: 0 0 18px rgba(16,185,129,0.55), 0 0 40px rgba(16,185,129,0.25);
+  --glow-amber:   0 0 18px rgba(245,158,11,0.55), 0 0 40px rgba(245,158,11,0.25);
+  --glow-violet:  0 0 18px rgba(139,92,246,0.55), 0 0 40px rgba(139,92,246,0.25);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--slate-900);
+  color: var(--slate-200);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Utility: glass card ──────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+}
+
+/* ── Utility: glow text ───────────────────────────────────── */
+.glow-emerald { text-shadow: var(--glow-emerald); }
+.glow-amber   { text-shadow: var(--glow-amber); }
+.glow-violet  { text-shadow: var(--glow-violet); }
+
+/* ── App shell ────────────────────────────────────────────── */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

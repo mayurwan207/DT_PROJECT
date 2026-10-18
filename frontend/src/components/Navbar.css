@@ -1,0 +1,10 @@
+/* ============================================================
+   Navbar.css — Clean scoped helpers for MessVerse Navbar
+   ============================================================ */
+
+/* Logo pulse effects */
+.navbar-logo-glow {
+  text-shadow:
+    0 0 10px rgba(16, 185, 129, 0.8),
+    0 0 24px rgba(16, 185, 129, 0.4);
+}
