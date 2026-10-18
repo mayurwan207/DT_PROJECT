@@ -29,10 +29,11 @@ const WEEK_DAYS = [
 
 /**
  * MessVerse Main Application Shell
- * Gen-Z Campus Dining & Zero-Waste Hub
+ * Deep Midnight Blue Dark Mode & Clean Light Theme Switcher
  */
 function App() {
   const [role, setRole] = useState('student'); // 'student' | 'staff'
+  const [theme, setTheme] = useState('dark'); // 'dark' (Deep Blue) | 'light' (Clean White)
   const [rsvpSyncVersion, setRsvpSyncVersion] = useState(0);
 
   const [user, setUser] = useState({
@@ -43,6 +44,10 @@ function App() {
     xp_points: 450,
     review_count: 5,
   });
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   // Handle Clean Plate check-in from StreakCard
   const handleCheckIn = ({ streak, xp }) => {
@@ -76,12 +81,18 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900 selection:bg-emerald-500 selection:text-white font-sans">
+    <div
+      className={`min-h-screen flex flex-col font-sans transition-colors duration-300 selection:bg-emerald-500 selection:text-white ${
+        theme === 'dark' ? 'theme-blue-dark dark' : 'theme-light-container'
+      }`}
+    >
       {/* ── Top Navigation Bar ────────────────────────────────────────── */}
       <Navbar
         role={role}
         onRoleChange={setRole}
         user={user}
+        theme={theme}
+        onToggleTheme={toggleTheme}
       />
 
       {/* ── Main Viewport Container ───────────────────────────────────── */}

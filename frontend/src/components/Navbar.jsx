@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Star, Sparkles } from 'lucide-react';
+import { Flame, Star, Sparkles, Moon, Sun } from 'lucide-react';
 
 /**
  * Navbar Component for MessVerse
- * Gen-Z Styled Clean Header with fluid role switcher.
+ * Includes Deep Midnight Blue Dark Mode & Clean White Mode Toggle
  */
 export default function Navbar({
   role = 'student',
@@ -15,6 +15,8 @@ export default function Navbar({
     streak_count: 12,
     xp_points: 450,
   },
+  theme = 'dark',
+  onToggleTheme,
 }) {
   const [internalRole, setInternalRole] = useState(role);
   const currentRole = onRoleChange ? role : internalRole;
@@ -30,7 +32,7 @@ export default function Navbar({
   const isStaff = currentRole === 'staff';
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <div
@@ -50,8 +52,25 @@ export default function Navbar({
           </span>
         </div>
 
-        {/* Right Cluster: Interactive Role Switcher & User Profile */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        {/* Right Cluster: Theme Switcher, Role Switcher & User Profile */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Theme Switcher Button (Midnight Blue Dark vs Crisp Light) */}
+          {onToggleTheme && (
+            <button
+              type="button"
+              onClick={onToggleTheme}
+              className="p-2 rounded-xl border border-slate-200 bg-white hover:border-slate-300 shadow-sm transition-all cursor-pointer flex items-center justify-center text-slate-700"
+              title={`Switch to ${theme === 'dark' ? 'Clean Light' : 'Midnight Blue Dark'} Mode`}
+              aria-label="Toggle Theme Mode"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-400" />
+              ) : (
+                <Moon className="w-4 h-4 text-blue-600" />
+              )}
+            </button>
+          )}
+
           {/* Framer-Motion Animated Role Switcher */}
           <nav
             className="relative flex items-center bg-slate-100 border border-slate-200 rounded-xl p-1 shadow-inner"
