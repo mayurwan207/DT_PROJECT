@@ -9,9 +9,9 @@ import confetti from 'canvas-confetti';
 const RATING_MOODS = {
   1: { emoji: '😡', label: 'Terrible / Poor Quality', color: '#EF4444' },
   2: { emoji: '🙁', label: 'Below Average / Needs Work', color: '#F97316' },
-  3: { emoji: '😐', label: 'Average / Neutral', color: '#F59E0B' },
-  4: { emoji: '😊', label: 'Very Tasty & Fresh', color: '#10B981' },
-  5: { emoji: '😍', label: 'Exceptional / Chef’s Kiss!', color: '#8B5CF6' },
+  3: { emoji: '😐', label: 'Average / Neutral', color: '#D97706' },
+  4: { emoji: '😊', label: 'Very Tasty & Fresh', color: '#059669' },
+  5: { emoji: '😍', label: 'Exceptional / Chef’s Kiss!', color: '#7C3AED' },
 };
 
 /**
@@ -30,11 +30,7 @@ const DEFAULT_DATE = '2026-10-15';
 
 /**
  * FeedbackForm Component
- * Features:
- * 1. Interactive 5-Star Rating using crisp Lucide Star SVG icons.
- * 2. Dynamic centerpiece mood emoji and status label.
- * 3. Quick-Tap Tag Cloud with sleek Emerald active states.
- * 4. Comment input & celebration confetti dispatching to POST /api/v1/feedback.
+ * Crisp White / Light Theme
  */
 export default function FeedbackForm({
   studentId = 1,
@@ -99,7 +95,7 @@ export default function FeedbackForm({
           });
         }, 180);
       } catch {
-        // Fallback for canvas-less test environments
+        // Fallback
       }
 
       // 2. Network dispatch to /api/v1/feedback
@@ -142,7 +138,7 @@ export default function FeedbackForm({
   };
 
   return (
-    <div className="relative w-full glass-panel p-6 sm:p-8 shadow-xl">
+    <div className="relative w-full glass-panel p-6 sm:p-8 shadow-sm">
       {/* Toast Notification */}
       <AnimatePresence>
         {toast && (
@@ -150,10 +146,10 @@ export default function FeedbackForm({
             initial={{ opacity: 0, y: -16, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -16, scale: 0.95 }}
-            className={`mb-6 flex items-center gap-3 p-4 rounded-xl border text-xs sm:text-sm font-semibold shadow-lg ${
+            className={`mb-6 flex items-center gap-3 p-4 rounded-xl border text-xs sm:text-sm font-semibold shadow-md ${
               toast.type === 'success'
-                ? 'bg-emerald-950/80 border-emerald-500/40 text-emerald-300 shadow-emerald-500/10'
-                : 'bg-amber-950/80 border-amber-500/40 text-amber-300 shadow-amber-500/10'
+                ? 'bg-emerald-50 border-emerald-300 text-emerald-800'
+                : 'bg-amber-50 border-amber-300 text-amber-800'
             }`}
           >
             <span className="text-lg">{toast.type === 'success' ? '⚡' : 'ℹ️'}</span>
@@ -163,22 +159,22 @@ export default function FeedbackForm({
       </AnimatePresence>
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-5 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5 mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400">
-            <MessageSquare className="w-5 h-5 text-violet-400" />
+          <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center text-violet-700">
+            <MessageSquare className="w-5 h-5 text-violet-600" />
           </div>
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white font-display tracking-tight">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display tracking-tight">
               Post-Meal Feedback
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
               Rate today's food quality to help chefs optimize flavor profiles and recipe quantities.
             </p>
           </div>
         </div>
 
-        <span className="inline-flex items-center gap-1.5 self-start sm:self-auto text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1.5 rounded-full">
+        <span className="inline-flex items-center gap-1.5 self-start sm:self-auto text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full">
           <span>⭐</span>
           <span>Earns +25 XP & Badges</span>
         </span>
@@ -191,16 +187,16 @@ export default function FeedbackForm({
           className="text-center py-8 flex flex-col items-center gap-4"
         >
           <div className="text-6xl animate-bounce">🎉</div>
-          <h4 className="text-2xl font-bold text-white font-display">
+          <h4 className="text-2xl font-bold text-slate-900 font-display">
             Thank You for Your Feedback!
           </h4>
-          <p className="text-slate-400 text-sm max-w-md leading-relaxed">
+          <p className="text-slate-600 text-sm max-w-md leading-relaxed">
             Your review and taste tags have been logged to the staff analytics dashboard to help eliminate food waste!
           </p>
           <button
             type="button"
             onClick={handleReset}
-            className="mt-2 px-5 py-2.5 rounded-xl border border-emerald-500/40 bg-emerald-500/15 text-emerald-300 font-bold text-xs uppercase tracking-wider hover:bg-emerald-500 hover:text-slate-950 transition-all shadow-sm cursor-pointer"
+            className="mt-2 px-5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-800 font-bold text-xs uppercase tracking-wider hover:bg-emerald-600 hover:text-white transition-all shadow-sm cursor-pointer"
           >
             Submit Another Review
           </button>
@@ -208,14 +204,14 @@ export default function FeedbackForm({
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           {/* Section 1: Dynamic Mood Emoji & Star Rating */}
-          <div className="flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-950/60 border border-slate-800/80 gap-3">
+          <div className="flex flex-col items-center justify-center p-6 rounded-2xl bg-slate-50 border border-slate-200 gap-3">
             {/* Dynamic Centerpiece Mood Emoji */}
             <motion.div
               key={activeMood.emoji}
               initial={{ scale: 0.7, rotate: -10 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: 'spring', stiffness: 500, damping: 20 }}
-              className="text-6xl sm:text-7xl select-none filter drop-shadow-[0_0_16px_rgba(245,158,11,0.35)]"
+              className="text-6xl sm:text-7xl select-none filter drop-shadow-sm"
               aria-label={`Current Mood: ${activeMood.label}`}
             >
               {activeMood.emoji}
@@ -250,8 +246,8 @@ export default function FeedbackForm({
                     <Star
                       className={`w-7 h-7 sm:w-8 sm:h-8 transition-colors duration-150 ${
                         isLit
-                          ? 'text-amber-400 fill-amber-400 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]'
-                          : 'text-slate-700 hover:text-slate-600'
+                          ? 'text-amber-500 fill-amber-400 drop-shadow-xs'
+                          : 'text-slate-300 hover:text-slate-400'
                       }`}
                     />
                   </button>
@@ -263,7 +259,7 @@ export default function FeedbackForm({
 
           {/* Section 2: Quick-Tap Tag Cloud */}
           <div className="flex flex-col gap-2.5">
-            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+            <label className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
               <span>🏷️ Quick-Tap Feedback Tags</span>
               <span className="text-slate-500 font-normal">(select all that apply)</span>
             </label>
@@ -279,8 +275,8 @@ export default function FeedbackForm({
                     onClick={() => handleTagToggle(tag.id)}
                     className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold border transition-all cursor-pointer ${
                       isSelected
-                        ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/50 shadow-sm shadow-emerald-500/10 font-bold'
-                        : 'bg-slate-950/60 text-slate-400 border-slate-800 hover:border-slate-700 hover:text-slate-200'
+                        ? 'bg-emerald-50 text-emerald-800 border-emerald-400 font-bold shadow-xs'
+                        : 'bg-white text-slate-700 border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                     }`}
                   >
                     <span>{tag.label}</span>
@@ -295,7 +291,7 @@ export default function FeedbackForm({
             <div className="flex items-center justify-between">
               <label
                 htmlFor="feedback-comment"
-                className="text-xs font-bold text-slate-400 uppercase tracking-wider"
+                className="text-xs font-bold text-slate-600 uppercase tracking-wider"
               >
                 💬 Comments & Suggestions
               </label>
@@ -311,7 +307,7 @@ export default function FeedbackForm({
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="What could the chefs improve or what did you love about today's meal? (e.g. Sambhar was perfectly spiced!)"
-              className="w-full bg-slate-950/80 border border-slate-800 focus:border-emerald-500/60 focus:ring-1 focus:ring-emerald-500/20 rounded-xl p-3.5 text-sm text-slate-100 placeholder-slate-600 outline-none transition-all resize-none font-sans"
+              className="w-full bg-white border border-slate-200 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 rounded-xl p-3.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all resize-none font-sans"
             />
           </div>
 
@@ -322,7 +318,7 @@ export default function FeedbackForm({
             disabled={isSubmitting}
             whileHover={!isSubmitting ? { scale: 1.01 } : {}}
             whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-            className={`w-full py-3.5 px-6 rounded-xl font-display font-black text-sm sm:text-base tracking-wide uppercase transition-all flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-emerald-500 to-teal-400 text-slate-950 border border-emerald-400 shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/35 ${
+            className={`w-full py-3.5 px-6 rounded-xl font-display font-black text-sm sm:text-base tracking-wide uppercase transition-all flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-emerald-600 to-teal-600 text-white border border-emerald-500 shadow-md shadow-emerald-600/20 hover:shadow-emerald-600/35 ${
               isSubmitting ? 'opacity-60 cursor-wait' : ''
             }`}
           >

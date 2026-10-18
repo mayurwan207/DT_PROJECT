@@ -29,7 +29,7 @@ const WEEK_DAYS = [
 
 /**
  * MessVerse Main Application Shell
- * Optimized for Laptop screens (1366px - 1920px), Tablets, and Mobile.
+ * Clean White / Light Dashboard Theme
  */
 function App() {
   const [role, setRole] = useState('student'); // 'student' | 'staff'
@@ -76,7 +76,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0F172A] text-slate-100 selection:bg-emerald-500 selection:text-slate-950 font-sans">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-slate-900 selection:bg-emerald-500 selection:text-white font-sans">
       {/* ── Top Navigation Bar ────────────────────────────────────────── */}
       <Navbar
         role={role}
@@ -87,25 +87,25 @@ function App() {
       {/* ── Main Viewport Container ───────────────────────────────────── */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col gap-8">
         {/* App Header & Mode Status Bar */}
-        <section className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-6">
+        <section className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
           <div className="flex flex-col gap-2">
             <div className="inline-flex items-center gap-2 self-start font-bold text-xs tracking-wider uppercase">
               <span
-                className={`w-2 h-2 rounded-full ${
+                className={`w-2.5 h-2.5 rounded-full ${
                   role === 'student'
-                    ? 'bg-emerald-400 shadow-[0_0_8px_#10B981]'
-                    : 'bg-violet-400 shadow-[0_0_8px_#8B5CF6]'
+                    ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]'
+                    : 'bg-violet-600 shadow-[0_0_8px_rgba(139,92,246,0.5)]'
                 }`}
               />
-              <span className={role === 'student' ? 'text-emerald-400 font-extrabold' : 'text-violet-400 font-extrabold'}>
+              <span className={role === 'student' ? 'text-emerald-700 font-extrabold' : 'text-violet-700 font-extrabold'}>
                 {role === 'student' ? 'Active: Student Zone 🎓' : 'Active: Staff Analytics Hub 👨‍🍳'}
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white font-display tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
               {role === 'student' ? `Welcome back, ${user.name} ⚡` : 'Canteen Staff Analytics Hub 🍳'}
             </h1>
-            <p className="text-slate-400 text-xs sm:text-sm max-w-2xl leading-relaxed">
+            <p className="text-slate-600 text-xs sm:text-sm max-w-2xl leading-relaxed">
               {role === 'student'
                 ? 'Lock in your meal RSVP early to stop kitchen overcooking, verify your clean plate to build your streak, and climb the campus leaderboard!'
                 : 'Monitor student attendance forecasts, dynamic batch advisories, and quality feedback updated in real time.'}
@@ -119,7 +119,7 @@ function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection('meal-rsvp-section')}
-                  className="px-3.5 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-500/10 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                  className="px-3.5 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-800 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
                 >
                   <Utensils className="w-3.5 h-3.5" />
                   <span>RSVPs</span>
@@ -127,7 +127,7 @@ function App() {
                 <button
                   type="button"
                   onClick={() => scrollToSection('leaderboard-section')}
-                  className="px-3.5 py-1.5 rounded-xl border border-violet-500/30 bg-violet-500/10 hover:bg-violet-600 hover:text-white text-violet-400 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
+                  className="px-3.5 py-1.5 rounded-xl border border-violet-300 bg-violet-50 hover:bg-violet-600 hover:text-white text-violet-800 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
                 >
                   <Trophy className="w-3.5 h-3.5" />
                   <span>Ranks</span>
@@ -135,15 +135,15 @@ function App() {
               </div>
             )}
 
-            <div className="flex items-center gap-3 bg-slate-950/60 border border-slate-800 rounded-xl px-3.5 py-1.5 shadow-sm">
+            <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-3.5 py-1.5 shadow-sm">
               <div className="text-center">
                 <span className="text-[10px] text-slate-500 font-mono uppercase block">RSVP Syncs</span>
-                <strong className="text-emerald-400 text-xs font-bold font-display">{rsvpSyncVersion}</strong>
+                <strong className="text-emerald-600 text-xs font-bold font-display">{rsvpSyncVersion}</strong>
               </div>
-              <div className="h-5 w-px bg-slate-800" />
+              <div className="h-5 w-px bg-slate-200" />
               <div className="text-center">
                 <span className="text-[10px] text-slate-500 font-mono uppercase block">Date</span>
-                <strong className="text-slate-200 text-xs font-mono">{TODAY_DATE}</strong>
+                <strong className="text-slate-800 text-xs font-mono">{TODAY_DATE}</strong>
               </div>
             </div>
           </div>
@@ -176,20 +176,20 @@ function App() {
                 {/* Header with Algorithmic Formula */}
                 <div className="flex flex-col gap-2.5">
                   <div className="flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2.5 py-1 rounded-full">
-                      <Sparkles className="w-3.5 h-3.5" />
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
+                      <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                       <span>Algorithmic Demand Engine</span>
                     </span>
-                    <span className="text-[11px] font-mono text-slate-400">Hostel Mess 1</span>
+                    <span className="text-[11px] font-mono text-slate-500">Hostel Mess 1</span>
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-100 font-display">
+                  <h3 className="text-xl font-bold text-slate-900 font-display">
                     How Your RSVP Prevents 120+ kg of Daily Food Waste 🥦
                   </h3>
 
-                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                     Hostel chefs cook with predictive batch precision using the formula:{' '}
-                    <code className="text-emerald-400 font-mono bg-slate-950/80 px-2 py-0.5 rounded-md border border-slate-800 font-bold inline-block mt-0.5">
+                    <code className="text-emerald-700 font-mono bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200 font-bold inline-block mt-0.5">
                       Expected Diners = Attending + (Unsure × 0.5)
                     </code>
                     . Submitting your choice stops overproduction before raw materials are prepped.
@@ -197,13 +197,13 @@ function App() {
                 </div>
 
                 {/* Weekly Clean-Plate Habit Calendar */}
-                <div className="bg-slate-950/60 border border-slate-800/80 rounded-xl p-3.5 flex flex-col gap-2">
-                  <div className="flex items-center justify-between text-xs font-bold text-slate-300">
+                <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 flex flex-col gap-2">
+                  <div className="flex items-center justify-between text-xs font-bold text-slate-700">
                     <span className="flex items-center gap-1.5">
                       <span>📅</span>
                       <span>Weekly Clean-Plate Habit</span>
                     </span>
-                    <span className="text-emerald-400 font-mono text-[11px]">5/7 Days Verified (Level 2)</span>
+                    <span className="text-emerald-700 font-mono text-[11px]">5/7 Days Verified (Level 2)</span>
                   </div>
 
                   <div className="grid grid-cols-7 gap-1.5 text-center text-xs">
@@ -212,10 +212,10 @@ function App() {
                         key={wd.day}
                         className={`p-2 rounded-lg border flex flex-col items-center gap-1 transition-colors ${
                           wd.checked
-                            ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-400 font-bold'
+                            ? 'bg-emerald-50 border-emerald-300 text-emerald-700 font-bold'
                             : wd.isToday
-                            ? 'bg-amber-950/40 border-amber-500/50 text-amber-400 font-black shadow-[0_0_12px_rgba(245,158,11,0.2)]'
-                            : 'bg-slate-900/60 border-slate-800 text-slate-500'
+                            ? 'bg-amber-50 border-amber-400 text-amber-700 font-black shadow-sm'
+                            : 'bg-white border-slate-200 text-slate-400'
                         }`}
                       >
                         <span className="text-[10px] font-mono uppercase">{wd.day}</span>
@@ -229,26 +229,26 @@ function App() {
 
                 {/* 3 High-Impact KPI Badges (with Verified Icons) */}
                 <div className="grid grid-cols-3 gap-3 pt-2 text-xs">
-                  <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-center sm:text-left">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center sm:text-left">
                     <span className="text-slate-500 text-[10px] uppercase font-mono block">Streak Habit</span>
-                    <strong className="text-amber-400 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
-                      <Flame className="w-4 h-4 text-amber-400 fill-amber-400/80" />
+                    <strong className="text-amber-700 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
+                      <Flame className="w-4 h-4 text-amber-600 fill-amber-500" />
                       <span>{user.streak_count} Days</span>
                     </strong>
                   </div>
 
-                  <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-center sm:text-left">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center sm:text-left">
                     <span className="text-slate-500 text-[10px] uppercase font-mono block">Eco Level</span>
-                    <strong className="text-violet-400 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
-                      <Star className="w-4 h-4 text-violet-400 fill-violet-400/80" />
+                    <strong className="text-violet-700 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
+                      <Star className="w-4 h-4 text-violet-600 fill-violet-500" />
                       <span>{user.xp_points} XP</span>
                     </strong>
                   </div>
 
-                  <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800/80 text-center sm:text-left">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center sm:text-left">
                     <span className="text-slate-500 text-[10px] uppercase font-mono block">Feedback Logs</span>
-                    <strong className="text-emerald-400 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
-                      <MessageSquare className="w-4 h-4 text-emerald-400" />
+                    <strong className="text-emerald-700 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
+                      <MessageSquare className="w-4 h-4 text-emerald-600" />
                       <span>{user.review_count} Reviews</span>
                     </strong>
                   </div>
@@ -292,7 +292,7 @@ function App() {
       </main>
 
       {/* ── Footer ────────────────────────────────────────────────────── */}
-      <footer className="border-t border-slate-800/80 bg-slate-950/80 py-6 text-center text-xs text-slate-500 font-mono">
+      <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500 font-mono">
         <p>MessVerse ⚡ AI-Driven Canteen Demand & Gamified Waste Reduction Platform</p>
       </footer>
     </div>

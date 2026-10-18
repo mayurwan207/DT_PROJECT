@@ -1,12 +1,12 @@
 /* ============================================================
    MessVerse Global Design System
-   Theme: Premium Dark Dashboard
+   Theme: Crisp Clean White / Light Dashboard
    Palette:
-     - Slate Background:  #0F172A (900) / #0B1120 (950)
-     - Emerald Primary:    #10B981 (Actions & Success)
-     - Violet Gamify:     #8B5CF6 (XP, Badges, Ranks)
-     - Amber Highlight:   #F59E0B (Streaks & Ratings)
-     - Rose Accent:       #F43F5E (Skipping & Alerts)
+     - Pure White Background: #FFFFFF / #F8FAFC (Slate-50)
+     - Emerald Primary:       #059669 / #10B981 (Actions & Success)
+     - Violet Gamify:        #7C3AED / #8B5CF6 (XP, Badges, Ranks)
+     - Amber Highlight:      #D97706 / #F59E0B (Streaks & Ratings)
+     - Rose Accent:          #E11D48 / #F43F5E (Skipping & Alerts)
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
@@ -23,22 +23,16 @@
 }
 
 :root {
-  /* Brand Tokens */
-  --color-slate-bg: #0F172A;
-  --color-slate-card: rgba(15, 23, 42, 0.85);
-  --color-slate-surface: #1E293B;
-  --color-slate-border: rgba(51, 65, 85, 0.7);
+  /* Brand Tokens (Light Mode) */
+  --color-slate-bg: #FFFFFF;
+  --color-slate-card: rgba(255, 255, 255, 0.95);
+  --color-slate-surface: #F8FAFC;
+  --color-slate-border: #E2E8F0;
 
-  --color-emerald: #10B981;
-  --color-emerald-glow: rgba(16, 185, 129, 0.25);
-
-  --color-violet: #8B5CF6;
-  --color-violet-glow: rgba(139, 92, 246, 0.25);
-
-  --color-amber: #F59E0B;
-  --color-amber-glow: rgba(245, 158, 11, 0.25);
-
-  --color-rose: #F43F5E;
+  --color-emerald: #059669;
+  --color-violet: #7C3AED;
+  --color-amber: #D97706;
+  --color-rose: #E11D48;
 
   /* Typography */
   --font-ui: 'Inter', system-ui, -apple-system, sans-serif;
@@ -47,101 +41,94 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
   font-family: var(--font-ui);
-  background-color: var(--color-slate-bg);
-  color: #E2E8F0;
+  background-color: #F8FAFC;
+  color: #0F172A;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.08), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(139, 92, 246, 0.05), transparent 70%),
-    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(245, 158, 11, 0.04), transparent 60%);
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.05), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(139, 92, 246, 0.04), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 0% 80%, rgba(245, 158, 11, 0.03), transparent 60%);
   background-attachment: fixed;
 }
 
-/* Custom Scrollbar for sleek dark look */
+/* Custom Scrollbar for crisp light look */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #CBD5E1;
   border-radius: 9999px;
-  border: 2px solid #0F172A;
+  border: 2px solid #F1F5F9;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #94A3B8;
 }
 
-/* ── Restrained Glassmorphism & Card System ────────────────── */
+/* ── Light Mode Glass & Card System ───────────────────────── */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.65);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 1rem;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
 }
 
 .glass-panel-interactive {
-  background: rgba(15, 23, 42, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.65);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 1rem;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .glass-panel-interactive:hover {
-  border-color: rgba(16, 185, 129, 0.45);
-  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.5), 0 0 24px -4px rgba(16, 185, 129, 0.15);
+  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.1), 0 0 20px -4px rgba(16, 185, 129, 0.15);
   transform: translateY(-2px);
 }
 
 .glass-card-subtle {
-  background: rgba(30, 41, 59, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: 0.75rem;
 }
 
 /* ── Glow Shadow Utilities ─────────────────────────────────── */
 .glow-emerald-sm {
-  box-shadow: 0 0 16px -2px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 16px -2px rgba(16, 185, 129, 0.25);
 }
 .glow-emerald-md {
-  box-shadow: 0 0 28px -4px rgba(16, 185, 129, 0.45);
+  box-shadow: 0 0 28px -4px rgba(16, 185, 129, 0.35);
 }
 .glow-violet-sm {
-  box-shadow: 0 0 16px -2px rgba(139, 92, 246, 0.35);
+  box-shadow: 0 0 16px -2px rgba(139, 92, 246, 0.25);
 }
 .glow-violet-md {
-  box-shadow: 0 0 28px -4px rgba(139, 92, 246, 0.45);
+  box-shadow: 0 0 28px -4px rgba(139, 92, 246, 0.35);
 }
 .glow-amber-sm {
-  box-shadow: 0 0 16px -2px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 0 16px -2px rgba(245, 158, 11, 0.25);
 }
 .glow-amber-md {
-  box-shadow: 0 0 28px -4px rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 28px -4px rgba(245, 158, 11, 0.35);
 }
 
 /* Legacy utility alias compatibility */
 .glass {
-  background: rgba(15, 23, 42, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.65);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 1rem;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
 }

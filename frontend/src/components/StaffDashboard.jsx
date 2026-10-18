@@ -90,7 +90,7 @@ const SURVEY_FINDINGS = [
     desc: 'Students cite inconsistent spice levels and bland gravies as the primary cause for abandoning untouched food on trays.',
     impact: 'Action: Use real-time tag cloud to adjust salt & chili levels across lunch/dinner batches.',
     badge: 'Primary Waste Cause',
-    badgeColor: 'border-rose-500/40 text-rose-300 bg-rose-500/10',
+    badgeColor: 'border-rose-300 text-rose-800 bg-rose-50',
   },
   {
     stat: '71.2%',
@@ -98,7 +98,7 @@ const SURVEY_FINDINGS = [
     desc: 'Hostel residents frequently skip dinner without informing chefs, leading mess staff to cook for standard max capacity blindly.',
     impact: 'Action: 4-hour RSVP locks reduce unannounced dinner mismatch by over 60%.',
     badge: 'Operational Leak',
-    badgeColor: 'border-amber-500/40 text-amber-300 bg-amber-500/10',
+    badgeColor: 'border-amber-300 text-amber-800 bg-amber-50',
   },
   {
     stat: '68.4%',
@@ -106,7 +106,7 @@ const SURVEY_FINDINGS = [
     desc: 'Diners receive full standard scoops regardless of hunger level, generating massive plate scrapings during rice servings.',
     impact: 'Action: Introduce quick mini-portion options for lighter eaters.',
     badge: 'Portion Control',
-    badgeColor: 'border-blue-500/40 text-blue-300 bg-blue-500/10',
+    badgeColor: 'border-blue-300 text-blue-800 bg-blue-50',
   },
   {
     stat: '34.5%',
@@ -114,17 +114,13 @@ const SURVEY_FINDINGS = [
     desc: 'Pilot messes implementing dynamic demand prep targets saved over 120 kg of raw grains, dairy, and produce per day.',
     impact: 'Action: Track daily ₹ savings on cooking oil and basmati rice inventories.',
     badge: 'Proven Impact',
-    badgeColor: 'border-emerald-500/40 text-emerald-300 bg-emerald-500/10',
+    badgeColor: 'border-emerald-300 text-emerald-800 bg-emerald-50',
   },
 ];
 
 /**
  * StaffDashboard Component
- * Features:
- * 1. Metric Cards: Expected Diners, Food Prep Target (kg), and Estimated Waste Saved (kg & ₹ saved).
- * 2. Advisory Badge Display: Dynamic alerts like High Demand or Low Interest batch reductions.
- * 3. Feedback & Tag Cloud Distribution: Visual percentage bars showing positive vs negative tags.
- * 4. Survey Findings Summary: Research takeaway cards.
+ * Crisp White / Light Theme
  */
 export default function StaffDashboard({ refreshTrigger = 0 }) {
   const [selectedDate, setSelectedDate] = useState(DEFAULT_DATE);
@@ -150,7 +146,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
         setFeedbackSummary(fbData);
       }
     } catch {
-      // Fallback to local state
+      // Fallback
     } finally {
       setIsRefreshing(false);
     }
@@ -214,16 +210,16 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
   return (
     <div className="w-full flex flex-col gap-8 pb-12" aria-label="Staff Analytics Dashboard">
       {/* ── Top Dashboard Header ────────────────────────────────────── */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400">
+          <div className="w-10 h-10 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center text-violet-700">
             <span className="text-xl">👨‍🍳</span>
           </div>
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white font-display tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-display tracking-tight">
               Kitchen Operations & Demand Hub
             </h2>
-            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
               Real-time headcounts, predictive batch recommendations, and student taste analytics.
             </p>
           </div>
@@ -231,18 +227,18 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
 
         {/* Date Selector, Live Sync Badge & Refresh */}
         <div className="flex items-center gap-2.5 self-start md:self-auto">
-          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 border border-emerald-200 text-emerald-800 shadow-xs">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             <span>{refreshTrigger > 0 ? `Synced (${refreshTrigger} RSVP Updates)` : 'Live Kitchen Sync'}</span>
           </span>
 
-          <div className="flex items-center gap-2 bg-slate-950/60 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-slate-300 shadow-sm">
-            <Calendar className="w-4 h-4 text-emerald-400" />
+          <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-700 shadow-xs">
+            <Calendar className="w-4 h-4 text-emerald-600" />
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              className="bg-transparent text-slate-200 outline-none font-mono font-bold cursor-pointer"
+              className="bg-transparent text-slate-800 outline-none font-mono font-bold cursor-pointer"
             />
           </div>
 
@@ -250,10 +246,10 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
             type="button"
             onClick={handleRefresh}
             disabled={isRefreshing}
-            className="p-2.5 rounded-xl border border-slate-800 bg-slate-900/80 hover:border-emerald-500/50 text-slate-300 hover:text-emerald-400 transition-all cursor-pointer shadow-sm"
+            className="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-emerald-500 text-slate-600 hover:text-emerald-700 transition-all cursor-pointer shadow-xs"
             title="Refresh analytics data"
           >
-            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-emerald-400' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-emerald-600' : ''}`} />
           </button>
         </div>
       </div>
@@ -267,8 +263,8 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
             onClick={() => setSelectedMealFilter(filter)}
             className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer border ${
               selectedMealFilter === filter
-                ? 'bg-violet-600 text-white border-violet-500 shadow-md shadow-violet-500/25 font-black'
-                : 'bg-slate-900/60 text-slate-400 border-slate-800 hover:border-slate-700 hover:text-slate-200'
+                ? 'bg-violet-600 text-white border-violet-600 shadow-sm font-black'
+                : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900'
             }`}
           >
             {filter === 'all' ? '🍽️ All Meals Combined' : `🍴 ${filter}`}
@@ -279,75 +275,75 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
       {/* ── Feature 1: Metric Cards ─────────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {/* Card 1: Expected Diners */}
-        <div className="glass-panel p-6 flex flex-col justify-between gap-4 shadow-xl hover:border-emerald-500/40 transition-all">
+        <div className="glass-panel p-6 flex flex-col justify-between gap-4 shadow-sm hover:border-emerald-400 transition-all">
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Projected Headcount
               </span>
-              <h3 className="text-3xl font-black text-white font-display mt-1 tracking-tight">
+              <h3 className="text-3xl font-black text-slate-900 font-display mt-1 tracking-tight">
                 {Math.round(totalExpectedDiners)}{' '}
-                <span className="text-sm font-semibold text-slate-500">/ {totalCapacity}</span>
+                <span className="text-sm font-semibold text-slate-400">/ {totalCapacity}</span>
               </h3>
             </div>
-            <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 shadow-sm">
+            <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 shadow-xs">
               <Users className="w-5 h-5" />
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-400">Formula Breakdown:</span>
-            <span className="text-emerald-400 font-mono">Attending + (Unsure × 0.5)</span>
+          <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-semibold">
+            <span className="text-slate-500">Formula Breakdown:</span>
+            <span className="text-emerald-700 font-mono font-bold">Attending + (Unsure × 0.5)</span>
           </div>
         </div>
 
         {/* Card 2: Food Prep Target (kg) */}
-        <div className="glass-panel p-6 flex flex-col justify-between gap-4 shadow-xl hover:border-amber-500/40 transition-all">
+        <div className="glass-panel p-6 flex flex-col justify-between gap-4 shadow-sm hover:border-amber-400 transition-all">
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Recommended Batch Target
               </span>
-              <h3 className="text-3xl font-black text-amber-400 font-display mt-1 tracking-tight">
+              <h3 className="text-3xl font-black text-amber-600 font-display mt-1 tracking-tight">
                 {totalPrepKg.toFixed(1)}{' '}
-                <span className="text-sm font-semibold text-slate-500">kg food</span>
+                <span className="text-sm font-semibold text-slate-400">kg food</span>
               </h3>
             </div>
-            <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 shadow-sm">
+            <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 shadow-xs">
               <Utensils className="w-5 h-5" />
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-400">Rate Target:</span>
-            <span className="text-amber-300 font-mono">0.25 kg food / diner</span>
+          <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-semibold">
+            <span className="text-slate-500">Rate Target:</span>
+            <span className="text-amber-700 font-mono font-bold">0.25 kg food / diner</span>
           </div>
         </div>
 
         {/* Card 3: Estimated Waste Saved (kg & ₹) */}
-        <div className="glass-panel p-6 sm:col-span-2 lg:col-span-1 flex flex-col justify-between gap-4 shadow-xl hover:border-teal-500/40 transition-all">
+        <div className="glass-panel p-6 sm:col-span-2 lg:col-span-1 flex flex-col justify-between gap-4 shadow-sm hover:border-teal-400 transition-all">
           <div className="flex items-start justify-between">
             <div>
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
                 Food & Financial Savings
               </span>
               <div className="flex items-baseline gap-2.5 mt-1">
-                <h3 className="text-3xl font-black text-emerald-400 font-display tracking-tight">
+                <h3 className="text-3xl font-black text-emerald-600 font-display tracking-tight">
                   {foodSavedKg} kg
                 </h3>
-                <span className="text-xs font-bold text-teal-300 flex items-center bg-teal-500/10 border border-teal-500/30 px-2 py-0.5 rounded-md font-mono">
+                <span className="text-xs font-bold text-teal-800 flex items-center bg-teal-50 border border-teal-200 px-2 py-0.5 rounded-md font-mono">
                   <IndianRupee className="w-3.5 h-3.5 inline mr-0.5" /> {rupeesSaved.toLocaleString('en-IN')}
                 </span>
               </div>
             </div>
-            <div className="p-3 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400 shadow-sm">
+            <div className="p-3 rounded-xl bg-teal-50 border border-teal-200 text-teal-600 shadow-xs">
               <TrendingDown className="w-5 h-5" />
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-400">Avoided Excess:</span>
-            <span className="text-teal-400 font-mono">vs Blind Max Capacity (500)</span>
+          <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-semibold">
+            <span className="text-slate-500">Avoided Excess:</span>
+            <span className="text-teal-700 font-mono font-bold">vs Blind Max Capacity (500)</span>
           </div>
         </div>
       </div>
@@ -357,11 +353,11 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-lg">📢</span>
-            <h3 className="text-xl font-bold text-white font-display">
+            <h3 className="text-xl font-bold text-slate-900 font-display">
               Kitchen Batch Advisories & Operational Alerts
             </h3>
           </div>
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-slate-500">
             {displayedMeals.length} Slot{displayedMeals.length > 1 ? 's' : ''} Monitored
           </span>
         </div>
@@ -374,12 +370,12 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
             return (
               <div
                 key={meal.meal_type}
-                className="glass-panel p-5 flex flex-col justify-between gap-4 shadow-xl"
+                className="glass-panel p-5 flex flex-col justify-between gap-4 shadow-sm"
               >
                 {/* Header with Title and Operational Badge */}
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono font-bold uppercase text-slate-400">
+                    <span className="text-xs font-mono font-bold uppercase text-slate-500">
                       Meal Slot
                     </span>
                     <span className="text-xs font-medium text-slate-500">
@@ -387,57 +383,57 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
                     </span>
                   </div>
 
-                  <h4 className="text-xl font-bold text-white font-display capitalize">
+                  <h4 className="text-xl font-bold text-slate-900 font-display capitalize">
                     {meal.meal_type}
                   </h4>
 
                   {/* Operational Badge Alert */}
                   <div
-                    className={`p-3 rounded-xl border text-xs font-bold flex items-center gap-2 shadow-sm ${
+                    className={`p-3 rounded-xl border text-xs font-bold flex items-center gap-2 shadow-xs ${
                       isHighDemand
-                        ? 'bg-rose-950/50 border-rose-500/40 text-rose-300'
+                        ? 'bg-rose-50 border-rose-300 text-rose-800'
                         : isLowDemand
-                        ? 'bg-amber-950/50 border-amber-500/40 text-amber-300'
-                        : 'bg-emerald-950/50 border-emerald-500/40 text-emerald-300'
+                        ? 'bg-amber-50 border-amber-300 text-amber-800'
+                        : 'bg-emerald-50 border-emerald-300 text-emerald-800'
                     }`}
                   >
                     {isHighDemand ? (
-                      <Flame className="w-4 h-4 text-rose-400 flex-shrink-0" />
+                      <Flame className="w-4 h-4 text-rose-600 flex-shrink-0" />
                     ) : isLowDemand ? (
-                      <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                      <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0" />
                     ) : (
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                     )}
                     <span>{meal.badge}</span>
                   </div>
                 </div>
 
                 {/* RSVP Breakdown Headcounts */}
-                <div className="flex flex-col gap-2 pt-2 border-t border-slate-800/80">
+                <div className="flex flex-col gap-2 pt-2 border-t border-slate-200">
                   <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                    <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
                       <span className="text-slate-500 text-[10px] block font-mono">Attending</span>
-                      <strong className="text-emerald-400 font-bold font-display">{meal.attending}</strong>
+                      <strong className="text-emerald-700 font-bold font-display">{meal.attending}</strong>
                     </div>
-                    <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
                       <span className="text-slate-500 text-[10px] block font-mono">Skipping</span>
-                      <strong className="text-rose-400 font-bold font-display">{meal.skipping}</strong>
+                      <strong className="text-rose-700 font-bold font-display">{meal.skipping}</strong>
                     </div>
-                    <div className="bg-slate-950/60 p-2 rounded-lg border border-slate-800">
+                    <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
                       <span className="text-slate-500 text-[10px] block font-mono">Unsure</span>
-                      <strong className="text-amber-400 font-bold font-display">{meal.unsure}</strong>
+                      <strong className="text-amber-700 font-bold font-display">{meal.unsure}</strong>
                     </div>
                   </div>
 
                   {/* Headcount vs Prep Target Output */}
-                  <div className="bg-slate-950/80 p-3 rounded-xl border border-slate-800/90 flex items-center justify-between text-xs mt-1">
+                  <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 flex items-center justify-between text-xs mt-1">
                     <div>
                       <span className="text-slate-500 block text-[10px]">Expected Diners</span>
-                      <strong className="text-white font-bold font-display">{meal.expected_diners}</strong>
+                      <strong className="text-slate-900 font-bold font-display">{meal.expected_diners}</strong>
                     </div>
                     <div className="text-right">
                       <span className="text-slate-500 block text-[10px]">Recommended Batch</span>
-                      <strong className="text-amber-400 font-bold font-display">{meal.prep_qty_kg} kg</strong>
+                      <strong className="text-amber-700 font-bold font-display">{meal.prep_qty_kg} kg</strong>
                     </div>
                   </div>
                 </div>
@@ -450,39 +446,39 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
       {/* ── Feature 3: Feedback & Tag Cloud Distribution ────────────── */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
         {/* Positive vs Negative Tag Ratio */}
-        <div className="glass-panel p-6 flex flex-col justify-between gap-5 shadow-xl">
+        <div className="glass-panel p-6 flex flex-col justify-between gap-5 shadow-sm">
           <div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-lg">📊</span>
-                <h3 className="text-lg sm:text-xl font-bold text-white font-display">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
                   Student Sentiment & Tag Distribution
                 </h3>
               </div>
-              <span className="text-xs font-mono font-bold text-slate-400">
+              <span className="text-xs font-mono font-bold text-slate-500">
                 Past {feedbackSummary.window_days || 7} Days
               </span>
             </div>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-600 mt-1">
               Distribution of flavor and portion feedback tags reported by students.
             </p>
           </div>
 
           {/* Visual Percentage Sentiment Bar */}
-          <div className="flex flex-col gap-2.5 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+          <div className="flex flex-col gap-2.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
             <div className="flex items-center justify-between text-xs font-bold">
-              <span className="text-emerald-400 flex items-center gap-1.5">
+              <span className="text-emerald-700 flex items-center gap-1.5">
                 <ThumbsUp className="w-3.5 h-3.5" /> Positive Sentiment ({positivePercent}%)
               </span>
-              <span className="text-rose-400 flex items-center gap-1.5">
+              <span className="text-rose-700 flex items-center gap-1.5">
                 <ThumbsDown className="w-3.5 h-3.5" /> Issues Reported ({negativePercent}%)
               </span>
             </div>
 
-            <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden flex shadow-inner">
+            <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden flex">
               <div
                 style={{ width: `${positivePercent}%` }}
-                className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-500"
               />
               <div
                 style={{ width: `${negativePercent}%` }}
@@ -498,7 +494,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
 
           {/* Individual Tag Frequency Chips */}
           <div className="flex flex-col gap-2">
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
               Top Ranked Feedback Tags
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -509,12 +505,12 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
                     key={t.tag}
                     className={`p-2 rounded-xl border text-xs font-semibold flex items-center justify-between ${
                       isPositive
-                        ? 'bg-emerald-950/30 border-emerald-500/30 text-emerald-300'
-                        : 'bg-rose-950/30 border-rose-500/30 text-rose-300'
+                        ? 'bg-emerald-50 border-emerald-200 text-emerald-800'
+                        : 'bg-rose-50 border-rose-200 text-rose-800'
                     }`}
                   >
                     <span className="capitalize">{t.tag.replace('_', ' ')}</span>
-                    <span className="font-mono bg-slate-950/70 px-1.5 py-0.5 rounded text-[10px]">
+                    <span className="font-mono bg-white px-1.5 py-0.5 rounded text-[10px] border border-slate-200">
                       {t.count}
                     </span>
                   </div>
@@ -525,23 +521,23 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
         </div>
 
         {/* 7-Day Star Rating Breakdown Card */}
-        <div className="glass-panel p-6 flex flex-col justify-between gap-5 shadow-xl">
+        <div className="glass-panel p-6 flex flex-col justify-between gap-5 shadow-sm">
           <div>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-lg">⭐</span>
-                <h3 className="text-lg sm:text-xl font-bold text-white font-display">
+                <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
                   Quality Satisfaction Score
                 </h3>
               </div>
-              <div className="flex items-baseline gap-1 bg-amber-500/10 border border-amber-500/30 px-2.5 py-0.5 rounded-full text-amber-400 font-display">
+              <div className="flex items-baseline gap-1 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full text-amber-700 font-display">
                 <strong className="text-base font-black">
                   {feedbackSummary.average_rating ? feedbackSummary.average_rating.toFixed(1) : '4.2'}
                 </strong>
                 <span className="text-[11px]">/ 5.0</span>
               </div>
             </div>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-600 mt-1">
               Calculated across {feedbackSummary.total_reviews || 142} validated post-meal student reviews.
             </p>
           </div>
@@ -555,16 +551,16 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
 
               return (
                 <div key={stars} className="flex items-center gap-3 text-xs">
-                  <span className="w-12 font-mono font-bold text-amber-400 flex items-center gap-1">
+                  <span className="w-12 font-mono font-bold text-amber-600 flex items-center gap-1">
                     {stars} ★
                   </span>
-                  <div className="flex-1 h-2 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                  <div className="flex-1 h-2 bg-slate-200 rounded-full overflow-hidden">
                     <div
                       style={{ width: `${pct}%` }}
-                      className="h-full bg-amber-400 rounded-full transition-all duration-300"
+                      className="h-full bg-amber-500 rounded-full transition-all duration-300"
                     />
                   </div>
-                  <span className="w-10 text-right font-mono text-slate-400 text-[11px]">
+                  <span className="w-10 text-right font-mono text-slate-500 text-[11px]">
                     {count}
                   </span>
                 </div>
@@ -572,7 +568,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
             })}
           </div>
 
-          <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-xl text-xs text-slate-400 flex items-center gap-2">
+          <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600 flex items-center gap-2">
             <span className="text-base">💡</span>
             <span>
               Ratings below 3.0 automatically trigger alert flags for the head cook to review seasoning.
@@ -584,12 +580,12 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
       {/* ── Feature 4: Survey Findings Summary (Canteen Research) ────── */}
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">
-          <BookOpen className="w-5 h-5 text-violet-400" />
-          <h3 className="text-xl font-bold text-white font-display">
+          <BookOpen className="w-5 h-5 text-violet-600" />
+          <h3 className="text-xl font-bold text-slate-900 font-display">
             Canteen Food Waste Research Insights & Survey Findings
           </h3>
         </div>
-        <p className="text-xs text-slate-400 -mt-2">
+        <p className="text-xs text-slate-600 -mt-2">
           Key empirical observations driving MessVerse's algorithmic demand and feedback framework.
         </p>
 
@@ -597,14 +593,14 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           {SURVEY_FINDINGS.map((finding, idx) => (
             <div
               key={idx}
-              className="glass-panel p-5 flex flex-col justify-between gap-3.5 shadow-xl hover:border-violet-500/40 transition-all"
+              className="glass-panel p-5 flex flex-col justify-between gap-3.5 shadow-sm hover:border-violet-300 transition-all"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h4 className="text-2xl sm:text-3xl font-black text-white font-display tracking-tight">
+                  <h4 className="text-2xl sm:text-3xl font-black text-slate-900 font-display tracking-tight">
                     {finding.stat}
                   </h4>
-                  <span className="text-xs sm:text-sm font-bold text-violet-300 block mt-0.5">
+                  <span className="text-xs sm:text-sm font-bold text-violet-700 block mt-0.5">
                     {finding.highlight}
                   </span>
                 </div>
@@ -613,12 +609,12 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
                 </span>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-600 leading-relaxed">
                 {finding.desc}
               </p>
 
-              <div className="pt-2.5 border-t border-slate-800 text-[11px] font-medium text-slate-400 bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/80">
-                <span className="text-violet-400 font-bold block mb-0.5">Kitchen Takeaway:</span>
+              <div className="pt-2.5 border-t border-slate-200 text-[11px] font-medium text-slate-600 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                <span className="text-violet-700 font-bold block mb-0.5">Kitchen Takeaway:</span>
                 {finding.impact}
               </div>
             </div>
