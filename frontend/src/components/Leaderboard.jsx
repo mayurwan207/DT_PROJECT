@@ -6,11 +6,11 @@ import { Trophy, Flame, Star } from 'lucide-react';
  * Fallback realistic leaderboard seed data in case backend database is empty
  */
 const DEFAULT_ZERO_WASTE = [
-  { rank: 1, student_id: 101, name: 'Ananya Deshmukh', streak_count: 29, review_count: 18, xp_points: 1450, tier: 'Mess Titan 👑' },
-  { rank: 2, student_id: 102, name: 'Rohan Verma',     streak_count: 24, review_count: 15, xp_points: 1200, tier: 'Zero-Waste Warrior ⚔️' },
-  { rank: 3, student_id: 1,   name: 'Aarav Sharma',    streak_count: 18, review_count: 12, xp_points: 900,  tier: 'Eco Legend 🏆' },
-  { rank: 4, student_id: 104, name: 'Sneha Patel',     streak_count: 14, review_count: 9,  xp_points: 700,  tier: 'Plate Hero 🥉' },
-  { rank: 5, student_id: 105, name: 'Kabir Mehta',     streak_count: 12, review_count: 11, xp_points: 600,  tier: 'Plate Hero 🥉' },
+  { rank: 1, student_id: 101, name: 'Ananya Deshmukh', streak_count: 29, review_count: 18, xp_points: 1450, tier: 'Mess Gigachad 👑' },
+  { rank: 2, student_id: 102, name: 'Rohan Verma',     streak_count: 24, review_count: 15, xp_points: 1200, tier: 'Zero-Waste Warlord ⚔️' },
+  { rank: 3, student_id: 1,   name: 'Aarav Sharma',    streak_count: 18, review_count: 12, xp_points: 900,  tier: 'Clean Plate Demon 🏆' },
+  { rank: 4, student_id: 104, name: 'Sneha Patel',     streak_count: 14, review_count: 9,  xp_points: 700,  tier: 'Plate Rookie 🥉' },
+  { rank: 5, student_id: 105, name: 'Kabir Mehta',     streak_count: 12, review_count: 11, xp_points: 600,  tier: 'Plate Rookie 🥉' },
   { rank: 6, student_id: 106, name: 'Pooja Nair',      streak_count: 10, review_count: 8,  xp_points: 500,  tier: 'Green Scout 🌱' },
   { rank: 7, student_id: 107, name: 'Vikram Joshi',    streak_count: 8,  review_count: 6,  xp_points: 400,  tier: 'Green Scout 🌱' },
   { rank: 8, student_id: 108, name: 'Diya Sen',        streak_count: 7,  review_count: 14, xp_points: 350,  tier: 'Green Scout 🌱' },
@@ -32,11 +32,11 @@ const DEFAULT_REVIEW_SUPERSTARS = [
 ];
 
 function getTierName(streak, xp) {
-  if (streak >= 25 || xp >= 1400) return 'Mess Titan 👑';
-  if (streak >= 15 || xp >= 1000) return 'Zero-Waste Warrior ⚔️';
-  if (streak >= 8 || xp >= 600)   return 'Eco Legend 🏆';
-  if (streak >= 4 || xp >= 300)   return 'Plate Hero 🥉';
-  return 'Green Scout 🌱';
+  if (streak >= 25 || xp >= 1400) return 'Mess Gigachad 👑';
+  if (streak >= 15 || xp >= 1000) return 'Zero-Waste Warlord ⚔️';
+  if (streak >= 8 || xp >= 600)   return 'Clean Plate Demon 🏆';
+  if (streak >= 4 || xp >= 300)   return 'Plate Rookie 🥉';
+  return 'Eco Rookie 🌱';
 }
 
 function getInitials(name) {
@@ -48,7 +48,7 @@ function getInitials(name) {
 
 /**
  * Leaderboard Component
- * Crisp White / Light Theme
+ * Gen-Z Campus Hall of Fame
  */
 export default function Leaderboard({ currentStudentId = 1 }) {
   const [activeTab, setActiveTab] = useState('streak'); // 'streak' | 'review'
@@ -76,7 +76,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
           }
         }
       } catch {
-        // Fallback to rich pre-seeded mock list
+        // Fallback
       } finally {
         if (isMounted) setIsLoading(false);
       }
@@ -110,10 +110,10 @@ export default function Leaderboard({ currentStudentId = 1 }) {
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-display tracking-tight">
-              Hall of Fame Leaderboard
+              Campus Hall of Fame • The Leaderboard Flex 🏆👑
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              Celebrating hostel diners leading the fight against food wastage and sharing flavor insights.
+              Hostel diners with the highest clean plate streaks and top-tier taste ratings. Main characters only.
             </p>
           </div>
         </div>
@@ -130,7 +130,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
             }`}
           >
             <Flame className="w-3.5 h-3.5" />
-            <span>Zero-Waste Champions</span>
+            <span>🔥 Clean Plate Demons</span>
           </button>
 
           <button
@@ -143,7 +143,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
             }`}
           >
             <Star className="w-3.5 h-3.5" />
-            <span>Review Superstars</span>
+            <span>⭐ Top Taste Critics</span>
           </button>
         </div>
       </div>
@@ -165,7 +165,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                 className="order-2 md:order-1 relative glass-panel p-5 flex flex-col items-center text-center gap-3.5 border-slate-200 shadow-sm"
               >
                 <div className="absolute -top-3.5 bg-slate-200 text-slate-800 font-black px-3.5 py-0.5 rounded-full text-xs uppercase tracking-wider shadow-xs">
-                  2nd Place 🥈
+                  🥈 Elite Runner-up #2
                 </div>
 
                 <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-slate-300 to-slate-100 text-slate-800 font-black text-xl flex items-center justify-center border-2 border-slate-300 shadow-sm mt-2">
@@ -209,7 +209,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
               >
                 <div className="absolute -top-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white font-black px-4 py-1 rounded-full text-xs uppercase tracking-wider shadow-sm flex items-center gap-1">
                   <span>👑</span>
-                  <span>Champion 1st</span>
+                  <span>Undisputed GOAT #1</span>
                 </div>
 
                 <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-300 text-slate-900 font-black text-2xl flex items-center justify-center border-4 border-amber-200 shadow-md mt-2">
@@ -237,7 +237,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                   <div className="h-7 w-px bg-amber-200" />
                   <div>
                     <span className="text-slate-500 text-[10px] block font-mono uppercase">Total XP</span>
-                    <strong className="text-violet-700 text-sm font-black font-display">{top1.xp_points} XP</strong>
+                    <strong className="text-violet-700 text-sm font-black font-display">{top1.xp_points} Aura XP</strong>
                   </div>
                 </div>
               </motion.div>
@@ -252,7 +252,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                 className="order-3 relative glass-panel p-5 flex flex-col items-center text-center gap-3.5 border-slate-200 shadow-sm"
               >
                 <div className="absolute -top-3.5 bg-amber-700 text-white font-black px-3.5 py-0.5 rounded-full text-xs uppercase tracking-wider shadow-xs">
-                  3rd Place 🥉
+                  🥉 Certified Flexer #3
                 </div>
 
                 <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-200 to-amber-100 text-amber-800 font-black text-xl flex items-center justify-center border-2 border-amber-300 shadow-sm mt-2">
@@ -292,12 +292,12 @@ export default function Leaderboard({ currentStudentId = 1 }) {
             {/* Table Header */}
             <div className="grid grid-cols-12 gap-2 text-xs font-mono font-bold text-slate-500 px-3 pb-2 border-b border-slate-200">
               <span className="col-span-2 sm:col-span-1 text-center">Rank</span>
-              <span className="col-span-6 sm:col-span-5">Student</span>
+              <span className="col-span-6 sm:col-span-5">Campus Legend</span>
               <span className="hidden sm:block sm:col-span-3 text-center">Badge Tier</span>
               <span className="col-span-2 text-center">
-                {activeTab === 'streak' ? 'Streak' : 'Reviews'}
+                {activeTab === 'streak' ? 'Clean Streak' : 'Reviews'}
               </span>
-              <span className="col-span-2 sm:col-span-1 text-right">XP</span>
+              <span className="col-span-2 sm:col-span-1 text-right">Aura XP</span>
             </div>
 
             {/* Table Rows */}
@@ -337,7 +337,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                             {student.name}
                             {isCurrent && (
                               <span className="ml-2 text-[10px] bg-emerald-600 text-white font-black px-1.5 py-0.5 rounded uppercase">
-                                You
+                                YOU (GIGACHAD)
                               </span>
                             )}
                           </span>

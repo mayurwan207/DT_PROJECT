@@ -8,44 +8,44 @@ import { Clock, Utensils } from 'lucide-react';
 const MEAL_DATA = [
   {
     id: 'breakfast',
-    title: 'Breakfast',
+    title: 'Breakfast Spread',
     time: '07:30 AM – 09:30 AM',
     icon: '🥞',
     items: [
-      { name: 'Crisp Masala Dosa', emoji: '🥞' },
-      { name: 'Sambhar & Coconut Chutney', emoji: '🥥' },
-      { name: 'Boiled Eggs / Sprouts', emoji: '🥚' },
-      { name: 'Fresh Filter Kaapi', emoji: '☕' },
+      { name: 'Crisp Masala Dosa (Chef Special)', emoji: '🥞' },
+      { name: 'Hot Sambhar & Coconut Chutney', emoji: '🥥' },
+      { name: 'Protein Boiled Eggs / Sprouts', emoji: '🥚' },
+      { name: 'Fresh Filter Kaapi (Bussin)', emoji: '☕' },
     ],
     initialTurnout: 72,
     totalDiners: 360,
   },
   {
     id: 'lunch',
-    title: 'Lunch',
+    title: 'Lunch Banquet',
     time: '12:30 PM – 02:30 PM',
     icon: '🍛',
     items: [
-      { name: 'Paneer Butter Masala', emoji: '🧀' },
+      { name: 'Paneer Butter Masala (Heavy Rizz)', emoji: '🧀' },
       { name: 'Steamed Basmati Rice', emoji: '🍚' },
-      { name: 'Dal Tadka & Hot Rotis', emoji: '🫓' },
-      { name: 'Spiced Cucumber Salad', emoji: '🥗' },
-      { name: 'Warm Gulab Jamun', emoji: '🍯' },
+      { name: 'Dal Tadka & Fresh Tawa Rotis', emoji: '🫓' },
+      { name: 'Spiced Cucumber Crunch Salad', emoji: '🥗' },
+      { name: 'Warm Gulab Jamun (Pure W)', emoji: '🍯' },
     ],
     initialTurnout: 88,
     totalDiners: 440,
   },
   {
     id: 'dinner',
-    title: 'Dinner',
+    title: 'Dinner Feast',
     time: '07:30 PM – 09:30 PM',
     icon: '🍲',
     items: [
-      { name: 'Hyderabadi Biryani (Veg/Chicken)', emoji: '🍗' },
-      { name: 'Cooling Boondi Raita', emoji: '🥣' },
+      { name: 'Dum Biryani (Veg/Chicken Certified)', emoji: '🍗' },
+      { name: 'Chilled Boondi Raita', emoji: '🥣' },
       { name: 'Butter Tandoori Naan', emoji: '🫓' },
-      { name: 'Mixed Veg Curry', emoji: '🥕' },
-      { name: 'Alphonso Mango Kulfi', emoji: '🍨' },
+      { name: 'Rich Mixed Veg Curry', emoji: '🥕' },
+      { name: 'Mango Kulfi (Top Tier)', emoji: '🍨' },
     ],
     initialTurnout: 78,
     totalDiners: 390,
@@ -56,7 +56,7 @@ const DEFAULT_DATE = '2026-10-15';
 
 /**
  * MealRsvp Component
- * Clean White / Light Theme
+ * Gen-Z Styled Attendance Declaring Hub
  */
 export default function MealRsvp({
   studentId = 1,
@@ -115,6 +115,12 @@ export default function MealRsvp({
       status: status,
     };
 
+    const statusLabels = {
+      attending: 'Pulling Up 😋',
+      skipping: 'Ghosting 🚫',
+      unsure: '50/50 Vibing 🤷',
+    };
+
     try {
       const response = await fetch('/api/v1/rsvp', {
         method: 'POST',
@@ -128,14 +134,8 @@ export default function MealRsvp({
         throw new Error(`Server returned status: ${response.status}`);
       }
 
-      const statusLabels = {
-        attending: 'Eating 😋',
-        skipping: 'Skipping 🚫',
-        unsure: 'Unsure 🤷',
-      };
-
       showToast(
-        `RSVP saved for ${mealType.toUpperCase()}: ${statusLabels[status]}! Kitchen batch synced.`,
+        `Locked in for ${mealType.toUpperCase()}: ${statusLabels[status]}! Kitchen batch synced, big W.`,
         'success'
       );
 
@@ -144,13 +144,8 @@ export default function MealRsvp({
       }
     } catch {
       // Offline / Demo mode: provide seamless success feedback
-      const statusLabels = {
-        attending: 'Eating 😋',
-        skipping: 'Skipping 🚫',
-        unsure: 'Unsure 🤷',
-      };
       showToast(
-        `RSVP saved for ${mealType.toUpperCase()}: ${statusLabels[status]}! Kitchen batch synced.`,
+        `Locked in for ${mealType.toUpperCase()}: ${statusLabels[status]}! Kitchen batch synced, big W.`,
         'success'
       );
       if (onRsvpUpdated) {
@@ -171,10 +166,10 @@ export default function MealRsvp({
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 font-display">
-              Daily Meal RSVPs & Menu Choices
+              Daily Meal RSVP • Are You Pulling Up? 🍽️⚡
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              One-tap declarations inform chefs 4 hours before cooking to prepare exact batch sizes.
+              Lock in your attendance 4 hours early so the kitchen cooks the exact batch. Don't ghost the dining hall!
             </p>
           </div>
         </div>
@@ -244,7 +239,11 @@ export default function MealRsvp({
                           : 'bg-amber-50 text-amber-800 border-amber-300'
                       }`}
                     >
-                      {currentStatus}
+                      {currentStatus === 'attending'
+                        ? 'Pulling Up 😋'
+                        : currentStatus === 'skipping'
+                        ? 'Ghosting 🚫'
+                        : '50/50 🤷'}
                     </span>
                   )}
                 </div>
@@ -253,7 +252,7 @@ export default function MealRsvp({
                 <div className="bg-slate-50 border border-slate-200 rounded-xl p-3.5 flex flex-col gap-2 min-h-[148px]">
                   <div className="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-slate-500">
                     <span>Menu Preview</span>
-                    <span className="text-[10px] text-emerald-700 font-mono font-bold">Fresh Daily</span>
+                    <span className="text-[10px] text-emerald-700 font-mono font-bold">100% Certified Fresh</span>
                   </div>
                   <ul className="space-y-1.5 text-xs text-slate-700 font-medium">
                     {meal.items.map((item, idx) => (
@@ -274,11 +273,11 @@ export default function MealRsvp({
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75" />
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600" />
                       </span>
-                      <span>Turnout Forecast</span>
+                      <span>Turnout Vibe Check</span>
                     </div>
 
                     <span className="font-bold text-emerald-700 font-display text-xs">
-                      {turnoutPercent}% attending
+                      {turnoutPercent}% pulling up
                     </span>
                   </div>
 
@@ -290,19 +289,19 @@ export default function MealRsvp({
                     />
                   </div>
                   <div className="text-[10px] text-slate-500 flex justify-between font-mono">
-                    <span>Max: 500 Capacity</span>
-                    <span>~{Math.round((turnoutPercent / 100) * 500)} Diners</span>
+                    <span>500 Capacity</span>
+                    <span>~{Math.round((turnoutPercent / 100) * 500)} Homies Arriving</span>
                   </div>
                 </div>
               </div>
 
-              {/* Action Buttons: Eating, Skipping, Unsure */}
+              {/* Action Buttons: Pulling Up, Ghosting, 50/50 */}
               <div className="mt-5 flex flex-col gap-2 pt-3 border-t border-slate-200">
                 <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
-                  Tap Your Attendance
+                  Declare Your Status
                 </span>
                 <div className="grid grid-cols-3 gap-2">
-                  {/* Attending Button */}
+                  {/* Pulling Up Button */}
                   <motion.button
                     type="button"
                     onClick={() => handleRsvpClick(meal.id, 'attending')}
@@ -314,12 +313,12 @@ export default function MealRsvp({
                         ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm font-black'
                         : 'bg-white border-slate-200 text-slate-700 hover:border-emerald-500 hover:text-emerald-700 hover:bg-emerald-50'
                     } ${isLoading ? 'opacity-50 cursor-wait' : ''}`}
-                    title={`Mark attending for ${meal.title}`}
+                    title={`Pulling up for ${meal.title}`}
                   >
-                    <span>Eating 😋</span>
+                    <span>Pulling Up 😋</span>
                   </motion.button>
 
-                  {/* Skipping Button */}
+                  {/* Ghosting Button */}
                   <motion.button
                     type="button"
                     onClick={() => handleRsvpClick(meal.id, 'skipping')}
@@ -331,12 +330,12 @@ export default function MealRsvp({
                         ? 'bg-rose-600 text-white border-rose-600 shadow-sm font-black'
                         : 'bg-white border-slate-200 text-slate-700 hover:border-rose-500 hover:text-rose-700 hover:bg-rose-50'
                     } ${isLoading ? 'opacity-50 cursor-wait' : ''}`}
-                    title={`Mark skipping for ${meal.title}`}
+                    title={`Ghosting ${meal.title}`}
                   >
-                    <span>Skipping 🚫</span>
+                    <span>Ghosting 🚫</span>
                   </motion.button>
 
-                  {/* Unsure Button */}
+                  {/* 50/50 Maybe Button */}
                   <motion.button
                     type="button"
                     onClick={() => handleRsvpClick(meal.id, 'unsure')}
@@ -348,9 +347,9 @@ export default function MealRsvp({
                         ? 'bg-amber-500 text-white border-amber-500 shadow-sm font-black'
                         : 'bg-white border-slate-200 text-slate-700 hover:border-amber-500 hover:text-amber-700 hover:bg-amber-50'
                     } ${isLoading ? 'opacity-50 cursor-wait' : ''}`}
-                    title={`Mark unsure for ${meal.title}`}
+                    title={`Unsure about ${meal.title}`}
                   >
-                    <span>Unsure 🤷</span>
+                    <span>50/50 Maybe 🤷</span>
                   </motion.button>
                 </div>
               </div>

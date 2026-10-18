@@ -5,13 +5,13 @@ import confetti from 'canvas-confetti';
 import './StreakCard.css';
 
 /**
- * Badge Tier milestones for clean plate streak.
+ * Badge Tier milestones for clean plate streak (Gen-Z Gamified Tiers)
  */
 const BADGE_TIERS = [
-  { minDays: 0,  target: 7,  name: 'Plate Hero',         icon: '🥉' },
-  { minDays: 7,  target: 15, name: 'Eco Legend',         icon: '🏆' },
-  { minDays: 15, target: 30, name: 'Zero-Waste Warrior', icon: '⚔️' },
-  { minDays: 30, target: 50, name: 'Mess Titan',         icon: '👑' },
+  { minDays: 0,  target: 7,  name: 'Plate Rookie',        icon: '🥉' },
+  { minDays: 7,  target: 15, name: 'Clean Plate Demon',    icon: '🏆' },
+  { minDays: 15, target: 30, name: 'Zero-Waste Warlord',  icon: '⚔️' },
+  { minDays: 30, target: 50, name: 'Mess Gigachad',       icon: '👑' },
 ];
 
 /**
@@ -40,7 +40,7 @@ function getTierProgress(streak) {
 
 /**
  * StreakCard Component
- * Crisp White / Light Mode Theme
+ * High-Energy Gen-Z Clean Plate Streak Tracker
  */
 export default function StreakCard({
   initialStreak = 12,
@@ -66,8 +66,8 @@ export default function StreakCard({
       const originY = rect ? (rect.top + rect.height / 2) / window.innerHeight : 0.7;
 
       confetti({
-        particleCount: 80,
-        spread: 60,
+        particleCount: 85,
+        spread: 65,
         origin: { x: originX, y: originY },
         colors: ['#10B981', '#F59E0B', '#8B5CF6', '#3B82F6', '#EC4899'],
         ticks: 200,
@@ -78,7 +78,7 @@ export default function StreakCard({
       // Secondary star blast
       setTimeout(() => {
         confetti({
-          particleCount: 40,
+          particleCount: 45,
           spread: 100,
           origin: { x: originX, y: originY },
           shapes: ['star', 'circle'],
@@ -128,12 +128,12 @@ export default function StreakCard({
       <div className="relative z-10 flex items-center justify-between gap-3">
         <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-full px-3 py-1 text-xs font-bold text-emerald-800 uppercase tracking-wider">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Zero Waste Streak</span>
+          <span>🔥 Zero Waste Streak • Pure Aura</span>
         </div>
 
         <div className="inline-flex items-center gap-1.5 bg-violet-50 border border-violet-200 rounded-full px-3 py-1 text-xs font-bold text-violet-700 font-display">
           <Star className="w-3.5 h-3.5 text-violet-600 fill-violet-500" />
-          <span>{xp} XP</span>
+          <span>{xp} Aura XP</span>
         </div>
       </div>
 
@@ -168,11 +168,11 @@ export default function StreakCard({
               {streak}
             </motion.span>
             <span className="font-display text-base sm:text-lg font-bold text-slate-700 uppercase tracking-wider">
-              Days
+              Days Undefeated
             </span>
           </div>
           <p className="text-xs sm:text-sm font-medium text-slate-500 mt-0.5">
-            {studentName ? `${studentName}'s Clean Plate Habit` : 'Active Clean Plate Habit'}
+            {studentName ? `${studentName}'s Clean Plate Flex` : 'Clean Plate Flex • No Crumbs Left'}
           </p>
         </div>
       </div>
@@ -199,8 +199,8 @@ export default function StreakCard({
         </div>
 
         <div className="flex justify-between text-[11px] font-mono text-slate-500">
-          <span>Milestone: {currentTier.minDays}d</span>
-          <span>Target: {targetDays}d</span>
+          <span>Level Base: {currentTier.minDays}d</span>
+          <span>Next Milestone: {targetDays}d</span>
         </div>
       </div>
 
@@ -218,7 +218,7 @@ export default function StreakCard({
                 transition={{ duration: 1.2, ease: 'easeOut' }}
                 className="whitespace-nowrap font-display text-sm font-black text-amber-700 bg-white border-2 border-amber-400 px-3 py-1 rounded-full shadow-md"
               >
-                ✨ +50 XP
+                ✨ +50 Aura XP Secured!
               </motion.div>
             ))}
           </AnimatePresence>
@@ -240,8 +240,8 @@ export default function StreakCard({
           <span>{hasClearedToday ? '✅' : '🍽️'}</span>
           <span>
             {hasClearedToday
-              ? 'Plate Cleared Today! (+50 XP Earned)'
-              : 'Plate Cleared Today! 🍽️'}
+              ? 'Plate Cleaned! +50 Aura XP Secured! ✅🔥'
+              : 'Plate Cleared Today! No Crumbs Left 🍽️✨'}
           </span>
         </motion.button>
 
@@ -251,7 +251,7 @@ export default function StreakCard({
             onClick={handleResetDemo}
             className="text-center text-[11px] text-slate-500 hover:text-slate-700 underline underline-offset-2 transition-colors cursor-pointer mt-1"
           >
-            ↺ Reset for preview demo
+            ↺ Reset demo for the vibes
           </button>
         )}
       </div>

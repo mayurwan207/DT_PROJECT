@@ -34,7 +34,7 @@ const DEFAULT_ANALYTICS = {
       prep_qty_kg: 85.0,
       waste_reduction_pct: 32.0,
       demand_ratio: 0.68,
-      badge: '✅ Moderate Demand — Cook Standard Batch',
+      badge: '✅ Balanced Demand — Cook Standard Batch',
     },
     {
       meal_type: 'lunch',
@@ -46,7 +46,7 @@ const DEFAULT_ANALYTICS = {
       prep_qty_kg: 108.75,
       waste_reduction_pct: 13.0,
       demand_ratio: 0.87,
-      badge: '🔥 High Demand — Cook Full Batch',
+      badge: '🔥 High Demand — Full Throttle Cooking',
     },
     {
       meal_type: 'dinner',
@@ -58,7 +58,7 @@ const DEFAULT_ANALYTICS = {
       prep_qty_kg: 48.75,
       waste_reduction_pct: 61.0,
       demand_ratio: 0.39,
-      badge: '⚠️ Low Demand — Reduce Batch by 20%',
+      badge: '⚠️ Ghost Alert — Cut Batch by 20%',
     },
   ],
 };
@@ -69,16 +69,16 @@ const DEFAULT_FEEDBACK_SUMMARY = {
   average_rating: 4.2,
   rating_breakdown: { '1': 6, '2': 10, '3': 24, '4': 58, '5': 44 },
   top_tags: [
-    { tag: 'tasty', count: 68 },
-    { tag: 'perfect', count: 42 },
-    { tag: 'too_spicy', count: 19 },
-    { tag: 'portion_small', count: 15 },
-    { tag: 'cold', count: 11 },
-    { tag: 'tasteless', count: 7 },
+    { tag: 'certified_bussin', count: 68 },
+    { tag: 'chefs_kiss', count: 42 },
+    { tag: 'spicy_demon_time', count: 19 },
+    { tag: 'portion_too_small', count: 15 },
+    { tag: 'ice_cold', count: 11 },
+    { tag: 'zero_flavor_l', count: 7 },
   ],
 };
 
-const POSITIVE_TAGS = new Set(['tasty', 'perfect', 'good_portion', 'clean_plate', 'fresh', 'hygienic']);
+const POSITIVE_TAGS = new Set(['certified_bussin', 'chefs_kiss', 'good_portion', 'clean_plate', 'fresh', 'tasty', 'perfect']);
 
 /**
  * Survey Findings research takeaways
@@ -86,41 +86,41 @@ const POSITIVE_TAGS = new Set(['tasty', 'perfect', 'good_portion', 'clean_plate'
 const SURVEY_FINDINGS = [
   {
     stat: '83.3%',
-    highlight: 'Taste & Seasoning Mismatch',
-    desc: 'Students cite inconsistent spice levels and bland gravies as the primary cause for abandoning untouched food on trays.',
-    impact: 'Action: Use real-time tag cloud to adjust salt & chili levels across lunch/dinner batches.',
+    highlight: 'Flavor & Spice Level Mismatch',
+    desc: 'Students cite inconsistent chili levels and bland gravies as the #1 reason food gets abandoned on plates.',
+    impact: 'Action: Use the real-time student tag cloud to adjust salt & chili levels across lunch/dinner batches.',
     badge: 'Primary Waste Cause',
     badgeColor: 'border-rose-300 text-rose-800 bg-rose-50',
   },
   {
     stat: '71.2%',
     highlight: 'Ghost Diners & Unannounced Skips',
-    desc: 'Hostel residents frequently skip dinner without informing chefs, leading mess staff to cook for standard max capacity blindly.',
-    impact: 'Action: 4-hour RSVP locks reduce unannounced dinner mismatch by over 60%.',
+    desc: 'Hostel residents frequently skip dinner without letting chefs know, leading the canteen to cook for full capacity blindly.',
+    impact: 'Action: 4-hour RSVP locks reduce unannounced dinner ghosting by over 60%.',
     badge: 'Operational Leak',
     badgeColor: 'border-amber-300 text-amber-800 bg-amber-50',
   },
   {
     stat: '68.4%',
-    highlight: 'Rigid Standard Portion Sizes',
-    desc: 'Diners receive full standard scoops regardless of hunger level, generating massive plate scrapings during rice servings.',
-    impact: 'Action: Introduce quick mini-portion options for lighter eaters.',
+    highlight: 'Rigid Standard Scoop Sizes',
+    desc: 'Diners receive giant default scoops regardless of hunger level, generating massive plate scrapings during rice servings.',
+    impact: 'Action: Introduce quick mini-portion options for lighter eaters to slash scrapings.',
     badge: 'Portion Control',
     badgeColor: 'border-blue-300 text-blue-800 bg-blue-50',
   },
   {
     stat: '34.5%',
     highlight: 'Average Raw Material Savings',
-    desc: 'Pilot messes implementing dynamic demand prep targets saved over 120 kg of raw grains, dairy, and produce per day.',
-    impact: 'Action: Track daily ₹ savings on cooking oil and basmati rice inventories.',
-    badge: 'Proven Impact',
+    desc: 'Hostels implementing dynamic demand prep targets saved over 120 kg of raw grains, dairy, and produce every single day.',
+    impact: 'Action: Track daily ₹ savings on cooking oil and basmati rice inventories directly.',
+    badge: 'Certified Impact',
     badgeColor: 'border-emerald-300 text-emerald-800 bg-emerald-50',
   },
 ];
 
 /**
  * StaffDashboard Component
- * Crisp White / Light Theme
+ * Kitchen Operations & Predictive AI Hub
  */
 export default function StaffDashboard({ refreshTrigger = 0 }) {
   const [selectedDate, setSelectedDate] = useState(DEFAULT_DATE);
@@ -217,10 +217,10 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           </div>
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900 font-display tracking-tight">
-              Kitchen Operations & Demand Hub
+              Kitchen Ops HQ • Demand Engine 👨‍🍳🔥
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              Real-time headcounts, predictive batch recommendations, and student taste analytics.
+              Real-time student headcount forecasts, predictive batch targets, and student vibe checks.
             </p>
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
         <div className="flex items-center gap-2.5 self-start md:self-auto">
           <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 border border-emerald-200 text-emerald-800 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>{refreshTrigger > 0 ? `Synced (${refreshTrigger} RSVP Updates)` : 'Live Kitchen Sync'}</span>
+            <span>{refreshTrigger > 0 ? `Live Sync (${refreshTrigger} RSVP Drops)` : 'Kitchen Live Sync Active'}</span>
           </span>
 
           <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-700 shadow-xs">
@@ -247,7 +247,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
             onClick={handleRefresh}
             disabled={isRefreshing}
             className="p-2.5 rounded-xl border border-slate-200 bg-white hover:border-emerald-500 text-slate-600 hover:text-emerald-700 transition-all cursor-pointer shadow-xs"
-            title="Refresh analytics data"
+            title="Refresh kitchen analytics"
           >
             <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-emerald-600' : ''}`} />
           </button>
@@ -267,7 +267,13 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
                 : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:text-slate-900'
             }`}
           >
-            {filter === 'all' ? '🍽️ All Meals Combined' : `🍴 ${filter}`}
+            {filter === 'all'
+              ? '🍽️ All Meals Combined'
+              : filter === 'breakfast'
+              ? '🥞 Breakfast Spread'
+              : filter === 'lunch'
+              ? '🍛 Lunch Banquet'
+              : '🍲 Dinner Feast'}
           </button>
         ))}
       </div>
@@ -279,7 +285,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           <div className="flex items-start justify-between">
             <div>
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-                Projected Headcount
+                Projected Diners • Pulling Up
               </span>
               <h3 className="text-3xl font-black text-slate-900 font-display mt-1 tracking-tight">
                 {Math.round(totalExpectedDiners)}{' '}
@@ -292,8 +298,8 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           </div>
 
           <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-500">Formula Breakdown:</span>
-            <span className="text-emerald-700 font-mono font-bold">Attending + (Unsure × 0.5)</span>
+            <span className="text-slate-500">Algorithm Logic:</span>
+            <span className="text-emerald-700 font-mono font-bold">Attending + (50/50 × 0.5)</span>
           </div>
         </div>
 
@@ -302,11 +308,11 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           <div className="flex items-start justify-between">
             <div>
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-                Recommended Batch Target
+                Target Batch • Cook Quantity
               </span>
               <h3 className="text-3xl font-black text-amber-600 font-display mt-1 tracking-tight">
                 {totalPrepKg.toFixed(1)}{' '}
-                <span className="text-sm font-semibold text-slate-400">kg food</span>
+                <span className="text-sm font-semibold text-slate-400">kg cooked</span>
               </h3>
             </div>
             <div className="p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-600 shadow-xs">
@@ -315,7 +321,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           </div>
 
           <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-500">Rate Target:</span>
+            <span className="text-slate-500">Portion Constant:</span>
             <span className="text-amber-700 font-mono font-bold">0.25 kg food / diner</span>
           </div>
         </div>
@@ -325,7 +331,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           <div className="flex items-start justify-between">
             <div>
               <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-                Food & Financial Savings
+                Food & Cash Saved • Certified W
               </span>
               <div className="flex items-baseline gap-2.5 mt-1">
                 <h3 className="text-3xl font-black text-emerald-600 font-display tracking-tight">
@@ -342,8 +348,8 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           </div>
 
           <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs font-semibold">
-            <span className="text-slate-500">Avoided Excess:</span>
-            <span className="text-teal-700 font-mono font-bold">vs Blind Max Capacity (500)</span>
+            <span className="text-slate-500">Excess Avoided:</span>
+            <span className="text-teal-700 font-mono font-bold">vs Blind Max Cooking (500)</span>
           </div>
         </div>
       </div>
@@ -412,15 +418,15 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
                 <div className="flex flex-col gap-2 pt-2 border-t border-slate-200">
                   <div className="grid grid-cols-3 gap-2 text-center text-xs">
                     <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
-                      <span className="text-slate-500 text-[10px] block font-mono">Attending</span>
+                      <span className="text-slate-500 text-[10px] block font-mono">Pulling Up</span>
                       <strong className="text-emerald-700 font-bold font-display">{meal.attending}</strong>
                     </div>
                     <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
-                      <span className="text-slate-500 text-[10px] block font-mono">Skipping</span>
+                      <span className="text-slate-500 text-[10px] block font-mono">Ghosting</span>
                       <strong className="text-rose-700 font-bold font-display">{meal.skipping}</strong>
                     </div>
                     <div className="bg-slate-50 p-2 rounded-lg border border-slate-200">
-                      <span className="text-slate-500 text-[10px] block font-mono">Unsure</span>
+                      <span className="text-slate-500 text-[10px] block font-mono">50/50</span>
                       <strong className="text-amber-700 font-bold font-display">{meal.unsure}</strong>
                     </div>
                   </div>
@@ -452,7 +458,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
               <div className="flex items-center gap-2">
                 <span className="text-lg">📊</span>
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-display">
-                  Student Sentiment & Tag Distribution
+                  Student Sentiment & Tag Breakdown
                 </h3>
               </div>
               <span className="text-xs font-mono font-bold text-slate-500">
@@ -468,10 +474,10 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
           <div className="flex flex-col gap-2.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
             <div className="flex items-center justify-between text-xs font-bold">
               <span className="text-emerald-700 flex items-center gap-1.5">
-                <ThumbsUp className="w-3.5 h-3.5" /> Positive Sentiment ({positivePercent}%)
+                <ThumbsUp className="w-3.5 h-3.5" /> High Praise ({positivePercent}%)
               </span>
               <span className="text-rose-700 flex items-center gap-1.5">
-                <ThumbsDown className="w-3.5 h-3.5" /> Issues Reported ({negativePercent}%)
+                <ThumbsDown className="w-3.5 h-3.5" /> Complaints Logged ({negativePercent}%)
               </span>
             </div>
 
@@ -509,7 +515,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
                         : 'bg-rose-50 border-rose-200 text-rose-800'
                     }`}
                   >
-                    <span className="capitalize">{t.tag.replace('_', ' ')}</span>
+                    <span className="capitalize">{t.tag.replace(/_/g, ' ')}</span>
                     <span className="font-mono bg-white px-1.5 py-0.5 rounded text-[10px] border border-slate-200">
                       {t.count}
                     </span>
@@ -538,7 +544,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
               </div>
             </div>
             <p className="text-xs text-slate-600 mt-1">
-              Calculated across {feedbackSummary.total_reviews || 142} validated post-meal student reviews.
+              Calculated across {feedbackSummary.total_reviews || 142} validated student reviews.
             </p>
           </div>
 
@@ -582,7 +588,7 @@ export default function StaffDashboard({ refreshTrigger = 0 }) {
         <div className="flex items-center gap-2">
           <BookOpen className="w-5 h-5 text-violet-600" />
           <h3 className="text-xl font-bold text-slate-900 font-display">
-            Canteen Food Waste Research Insights & Survey Findings
+            The Science of Mess Food Waste (Backed by Survey Data)
           </h3>
         </div>
         <p className="text-xs text-slate-600 -mt-2">

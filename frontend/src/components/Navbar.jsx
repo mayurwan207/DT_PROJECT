@@ -4,7 +4,7 @@ import { Flame, Star, Sparkles } from 'lucide-react';
 
 /**
  * Navbar Component for MessVerse
- * Clean Crisp White Header with fluid Framer Motion role switcher.
+ * Gen-Z Styled Clean Header with fluid role switcher.
  */
 export default function Navbar({
   role = 'student',
@@ -45,8 +45,8 @@ export default function Navbar({
               MessVerse
             </span>
           </div>
-          <span className="hidden md:inline-block text-[10px] uppercase font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 ml-1">
-            SmartMess
+          <span className="hidden md:inline-block text-[10px] uppercase font-mono font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 ml-1">
+            Zero Waste ⚡ No Cap
           </span>
         </div>
 
@@ -93,8 +93,8 @@ export default function Navbar({
                 />
               )}
               <span>👨‍🍳</span>
-              <span className="hidden sm:inline">Staff Analytics</span>
-              <span className="sm:hidden">Staff</span>
+              <span className="hidden sm:inline">Head Chef HQ</span>
+              <span className="sm:hidden">Chefs</span>
             </button>
           </nav>
 
@@ -102,7 +102,7 @@ export default function Navbar({
           <div
             className="flex items-center gap-2 sm:gap-2.5 bg-white border border-slate-200 hover:border-slate-300 rounded-xl px-2.5 sm:px-3 py-1.5 shadow-sm transition-all cursor-default"
             id="user-profile-pill"
-            title={`${user.name || 'Student'} • ${user.streak_count || 0} Day Streak • ${user.xp_points || 0} XP`}
+            title={`${user.name || 'Student'} • ${user.streak_count || 0} Day Streak • ${user.xp_points || 0} Aura XP`}
           >
             <div className="w-7 h-7 rounded-lg bg-violet-100 text-violet-700 font-black text-xs flex items-center justify-center border border-violet-200 shadow-sm flex-shrink-0 font-display">
               {user.avatar || (user.name ? user.name.slice(0, 2).toUpperCase() : '⚡')}

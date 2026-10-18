@@ -29,7 +29,7 @@ const WEEK_DAYS = [
 
 /**
  * MessVerse Main Application Shell
- * Clean White / Light Dashboard Theme
+ * Gen-Z Campus Dining & Zero-Waste Hub
  */
 function App() {
   const [role, setRole] = useState('student'); // 'student' | 'staff'
@@ -98,17 +98,17 @@ function App() {
                 }`}
               />
               <span className={role === 'student' ? 'text-emerald-700 font-extrabold' : 'text-violet-700 font-extrabold'}>
-                {role === 'student' ? 'Active: Student Zone 🎓' : 'Active: Staff Analytics Hub 👨‍🍳'}
+                {role === 'student' ? 'Student Zone • Main Character Energy 🎓⚡' : 'Canteen Master Chefs • The Cookery Hub 👨‍🍳🔥'}
               </span>
             </div>
 
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 font-display tracking-tight">
-              {role === 'student' ? `Welcome back, ${user.name} ⚡` : 'Canteen Staff Analytics Hub 🍳'}
+              {role === 'student' ? `Welcome back, ${user.name} ⚡ (Aura +10,000)` : 'Canteen Kitchen Operations & Analytics Hub 🍳'}
             </h1>
             <p className="text-slate-600 text-xs sm:text-sm max-w-2xl leading-relaxed">
               {role === 'student'
-                ? 'Lock in your meal RSVP early to stop kitchen overcooking, verify your clean plate to build your streak, and climb the campus leaderboard!'
-                : 'Monitor student attendance forecasts, dynamic batch advisories, and quality feedback updated in real time.'}
+                ? 'Lock in your meal RSVPs early so the chefs don’t overcook, flex that clean plate streak, and climb the campus Hall of Fame leaderboard! No cap 🥦'
+                : 'Monitor live student headcounts, AI batch recommendations, and flavor insights updated in real time.'}
             </p>
           </div>
 
@@ -122,7 +122,7 @@ function App() {
                   className="px-3.5 py-1.5 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-600 hover:text-white text-emerald-800 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
                 >
                   <Utensils className="w-3.5 h-3.5" />
-                  <span>RSVPs</span>
+                  <span>⚡ Lock In Meals</span>
                 </button>
                 <button
                   type="button"
@@ -130,15 +130,15 @@ function App() {
                   className="px-3.5 py-1.5 rounded-xl border border-violet-300 bg-violet-50 hover:bg-violet-600 hover:text-white text-violet-800 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
                 >
                   <Trophy className="w-3.5 h-3.5" />
-                  <span>Ranks</span>
+                  <span>👑 Leaderboard Rizz</span>
                 </button>
               </div>
             )}
 
             <div className="flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-3.5 py-1.5 shadow-sm">
               <div className="text-center">
-                <span className="text-[10px] text-slate-500 font-mono uppercase block">RSVP Syncs</span>
-                <strong className="text-emerald-600 text-xs font-bold font-display">{rsvpSyncVersion}</strong>
+                <span className="text-[10px] text-slate-500 font-mono uppercase block">Kitchen Syncs</span>
+                <strong className="text-emerald-600 text-xs font-bold font-display">{rsvpSyncVersion} Live</strong>
               </div>
               <div className="h-5 w-px bg-slate-200" />
               <div className="text-center">
@@ -178,21 +178,21 @@ function App() {
                   <div className="flex items-center justify-between">
                     <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Algorithmic Demand Engine</span>
+                      <span>Zero-Waste AI Engine • Certified W</span>
                     </span>
                     <span className="text-[11px] font-mono text-slate-500">Hostel Mess 1</span>
                   </div>
 
                   <h3 className="text-xl font-bold text-slate-900 font-display">
-                    How Your RSVP Prevents 120+ kg of Daily Food Waste 🥦
+                    How Your RSVP Saves 120+ kg of Food Daily (Actual W) 🥦🔥
                   </h3>
 
                   <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    Hostel chefs cook with predictive batch precision using the formula:{' '}
+                    Hostel chefs cook with predictive math using the formula:{' '}
                     <code className="text-emerald-700 font-mono bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200 font-bold inline-block mt-0.5">
-                      Expected Diners = Attending + (Unsure × 0.5)
+                      Expected Diners = Pulling Up + (50/50 Unsure × 0.5)
                     </code>
-                    . Submitting your choice stops overproduction before raw materials are prepped.
+                    . Dropping your RSVP stops overproduction before onions even get chopped. Real talk!
                   </p>
                 </div>
 
@@ -201,9 +201,9 @@ function App() {
                   <div className="flex items-center justify-between text-xs font-bold text-slate-700">
                     <span className="flex items-center gap-1.5">
                       <span>📅</span>
-                      <span>Weekly Clean-Plate Habit</span>
+                      <span>Weekly Clean-Plate Grind</span>
                     </span>
-                    <span className="text-emerald-700 font-mono text-[11px]">5/7 Days Verified (Level 2)</span>
+                    <span className="text-emerald-700 font-mono text-[11px]">5/7 Days Verified (Certified Eco Beast)</span>
                   </div>
 
                   <div className="grid grid-cols-7 gap-1.5 text-center text-xs">
@@ -233,7 +233,7 @@ function App() {
                     <span className="text-slate-500 text-[10px] uppercase font-mono block">Streak Habit</span>
                     <strong className="text-amber-700 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
                       <Flame className="w-4 h-4 text-amber-600 fill-amber-500" />
-                      <span>{user.streak_count} Days</span>
+                      <span>{user.streak_count} Days Undefeated</span>
                     </strong>
                   </div>
 
@@ -241,12 +241,12 @@ function App() {
                     <span className="text-slate-500 text-[10px] uppercase font-mono block">Eco Level</span>
                     <strong className="text-violet-700 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
                       <Star className="w-4 h-4 text-violet-600 fill-violet-500" />
-                      <span>{user.xp_points} XP</span>
+                      <span>{user.xp_points} Aura XP</span>
                     </strong>
                   </div>
 
                   <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-center sm:text-left">
-                    <span className="text-slate-500 text-[10px] uppercase font-mono block">Feedback Logs</span>
+                    <span className="text-slate-500 text-[10px] uppercase font-mono block">Taste Critic</span>
                     <strong className="text-emerald-700 text-base sm:text-lg font-display flex items-center justify-center sm:justify-start gap-1 mt-0.5">
                       <MessageSquare className="w-4 h-4 text-emerald-600" />
                       <span>{user.review_count} Reviews</span>
@@ -293,7 +293,7 @@ function App() {
 
       {/* ── Footer ────────────────────────────────────────────────────── */}
       <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500 font-mono">
-        <p>MessVerse ⚡ AI-Driven Canteen Demand & Gamified Waste Reduction Platform</p>
+        <p>MessVerse ⚡ Built for Campus Diners Who Hate Food Waste • 100% Aura, 0% Scrapings</p>
       </footer>
     </div>
   );

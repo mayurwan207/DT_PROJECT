@@ -4,33 +4,33 @@ import { Star, MessageSquare } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 /**
- * Star to mood emoji & label mapping
+ * Star to mood emoji & Gen-Z label mapping
  */
 const RATING_MOODS = {
-  1: { emoji: '😡', label: 'Terrible / Poor Quality', color: '#EF4444' },
-  2: { emoji: '🙁', label: 'Below Average / Needs Work', color: '#F97316' },
-  3: { emoji: '😐', label: 'Average / Neutral', color: '#D97706' },
-  4: { emoji: '😊', label: 'Very Tasty & Fresh', color: '#059669' },
-  5: { emoji: '😍', label: 'Exceptional / Chef’s Kiss!', color: '#7C3AED' },
+  1: { emoji: '🤮', label: 'Down Bad / Total L', color: '#EF4444' },
+  2: { emoji: '🫠', label: 'Pretty Mid / Needs Help', color: '#F97316' },
+  3: { emoji: '😐', label: 'Decent / It Is What It Is', color: '#D97706' },
+  4: { emoji: '🤤', label: 'Actually Slaps / Certified Fresh', color: '#059669' },
+  5: { emoji: '🔥', label: 'Chef Cooked / Pure Bussin’!', color: '#7C3AED' },
 };
 
 /**
  * Selectable tag cloud chips
  */
 const FEEDBACK_TAGS = [
-  { id: 'tasty', label: 'Tasty 😋' },
-  { id: 'too_spicy', label: 'Too Spicy 🌶️' },
-  { id: 'tasteless', label: 'Tasteless 👎' },
-  { id: 'cold', label: 'Cold ❄️' },
-  { id: 'portion_small', label: 'Portion Small 🍚' },
-  { id: 'perfect', label: 'Perfect 👌' },
+  { id: 'tasty', label: 'Certified Bussin’ 😋' },
+  { id: 'too_spicy', label: 'Spicy Demon Time 🌶️' },
+  { id: 'tasteless', label: 'Zero Flavor / L 👎' },
+  { id: 'cold', label: 'Ice Cold ❄️' },
+  { id: 'portion_small', label: 'Portion Too Small 🍚' },
+  { id: 'perfect', label: 'Chef’s Kiss 👌' },
 ];
 
 const DEFAULT_DATE = '2026-10-15';
 
 /**
  * FeedbackForm Component
- * Crisp White / Light Theme
+ * Gen-Z Campus Taste Vibe Check & Review Hub
  */
 export default function FeedbackForm({
   studentId = 1,
@@ -79,16 +79,16 @@ export default function FeedbackForm({
       // 1. Confetti burst
       try {
         confetti({
-          particleCount: 90,
-          spread: 70,
+          particleCount: 95,
+          spread: 75,
           origin: { y: 0.65 },
           colors: ['#10B981', '#F59E0B', '#8B5CF6', '#3B82F6', '#EC4899'],
         });
 
         setTimeout(() => {
           confetti({
-            particleCount: 45,
-            spread: 90,
+            particleCount: 50,
+            spread: 95,
             origin: { y: 0.6 },
             shapes: ['star', 'circle'],
             colors: ['#F59E0B', '#10B981', '#FFFFFF'],
@@ -112,7 +112,7 @@ export default function FeedbackForm({
       }
 
       setHasSubmitted(true);
-      showToast('Review Submitted! 🚀 Kitchen staff notified & review count updated.', 'success');
+      showToast('Review Dropped! 🚀 Kitchen staff notified & review count updated.', 'success');
 
       if (onSubmitSuccess) {
         onSubmitSuccess({ rating, tags: selectedTags, comment });
@@ -120,7 +120,7 @@ export default function FeedbackForm({
     } catch {
       // Offline / Demo mode: provide seamless success feedback
       setHasSubmitted(true);
-      showToast('Review Submitted! 🚀 Kitchen staff notified & review count updated.', 'success');
+      showToast('Review Dropped! 🚀 Kitchen staff notified & review count updated.', 'success');
 
       if (onSubmitSuccess) {
         onSubmitSuccess({ rating, tags: selectedTags, comment });
@@ -166,17 +166,17 @@ export default function FeedbackForm({
           </div>
           <div>
             <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-display tracking-tight">
-              Post-Meal Feedback
+              Post-Meal Vibe Check & Taste Review 📝🔥
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-              Rate today's food quality to help chefs optimize flavor profiles and recipe quantities.
+              Did the chef cook or was it mid? Drop your honest rating so the canteen team levels up!
             </p>
           </div>
         </div>
 
         <span className="inline-flex items-center gap-1.5 self-start sm:self-auto text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full">
           <span>⭐</span>
-          <span>Earns +25 XP & Badges</span>
+          <span>Earns +25 Aura XP & Badges</span>
         </span>
       </div>
 
@@ -188,17 +188,17 @@ export default function FeedbackForm({
         >
           <div className="text-6xl animate-bounce">🎉</div>
           <h4 className="text-2xl font-bold text-slate-900 font-display">
-            Thank You for Your Feedback!
+            Review Dropped! You're a Real One 🙌
           </h4>
           <p className="text-slate-600 text-sm max-w-md leading-relaxed">
-            Your review and taste tags have been logged to the staff analytics dashboard to help eliminate food waste!
+            Your taste intel just landed on the head chef's dashboard. Food waste reduced, aura increased!
           </p>
           <button
             type="button"
             onClick={handleReset}
             className="mt-2 px-5 py-2.5 rounded-xl border border-emerald-300 bg-emerald-50 text-emerald-800 font-bold text-xs uppercase tracking-wider hover:bg-emerald-600 hover:text-white transition-all shadow-sm cursor-pointer"
           >
-            Submit Another Review
+            Rate Another Meal 🔥
           </button>
         </motion.div>
       ) : (
@@ -254,14 +254,14 @@ export default function FeedbackForm({
                 );
               })}
             </div>
-            <span className="text-xs text-slate-500">Tap a star to rate from 1 (Terrible) to 5 (Outstanding)</span>
+            <span className="text-xs text-slate-500">Tap a star: 1 (Total L) to 5 (Pure Bussin')</span>
           </div>
 
           {/* Section 2: Quick-Tap Tag Cloud */}
           <div className="flex flex-col gap-2.5">
             <label className="text-xs font-bold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
-              <span>🏷️ Quick-Tap Feedback Tags</span>
-              <span className="text-slate-500 font-normal">(select all that apply)</span>
+              <span>🏷️ Quick-Tap Flavor Tags</span>
+              <span className="text-slate-500 font-normal">(choose what applies)</span>
             </label>
 
             <div className="flex flex-wrap gap-2.5">
@@ -293,7 +293,7 @@ export default function FeedbackForm({
                 htmlFor="feedback-comment"
                 className="text-xs font-bold text-slate-600 uppercase tracking-wider"
               >
-                💬 Comments & Suggestions
+                💬 Spill the Mess Tea (Comments)
               </label>
               <span className="text-[11px] font-mono text-slate-500">
                 {comment.length} / 500
@@ -306,7 +306,7 @@ export default function FeedbackForm({
               maxLength={500}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-              placeholder="What could the chefs improve or what did you love about today's meal? (e.g. Sambhar was perfectly spiced!)"
+              placeholder="Did the dal have salt? Did the paneer slap? Drop constructive tea for the kitchen... (e.g. Sambhar was 10/10 no cap)"
               className="w-full bg-white border border-slate-200 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/20 rounded-xl p-3.5 text-sm text-slate-900 placeholder-slate-400 outline-none transition-all resize-none font-sans"
             />
           </div>
@@ -322,7 +322,7 @@ export default function FeedbackForm({
               isSubmitting ? 'opacity-60 cursor-wait' : ''
             }`}
           >
-            <span>{isSubmitting ? 'Syncing...' : 'Submit Review 🚀'}</span>
+            <span>{isSubmitting ? 'Sending to Kitchen...' : 'Drop Review & Claim XP 🚀🔥'}</span>
           </motion.button>
         </form>
       )}
