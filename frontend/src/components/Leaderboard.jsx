@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Trophy, Flame, Star } from 'lucide-react';
 
 /**
  * Fallback realistic leaderboard seed data in case backend database is empty
@@ -48,9 +49,9 @@ function getInitials(name) {
 /**
  * Leaderboard Component
  * Features:
- * 1. Tab switcher: 🔥 Zero-Waste Champions vs ⭐ Review Superstars
- * 2. Top 3 Podium Cards with Gold, Silver, and Bronze rank styling
- * 3. Ranked table (4th–10th) showing Avatar, Name, Streak/Review counts, XP badge
+ * 1. Dual tab switcher: 🔥 Zero-Waste Champions vs ⭐ Review Superstars
+ * 2. Harmonic Top 3 Podium Cards with Gold, Silver, and Bronze elevation.
+ * 3. Pixel-perfect 4th–10th ranked grid with "You" highlight.
  */
 export default function Leaderboard({ currentStudentId = 1 }) {
   const [activeTab, setActiveTab] = useState('streak'); // 'streak' | 'review'
@@ -66,10 +67,7 @@ export default function Leaderboard({ currentStudentId = 1 }) {
     async function fetchLeaderboard() {
       setIsLoading(true);
       try {
-        let res = await fetch('/api/v1/leaderboard');
-        if (!res.ok) {
-          res = await fetch('http://localhost:8000/api/v1/leaderboard');
-        }
+        const res = await fetch('/api/v1/leaderboard');
         if (res.ok) {
           const data = await res.json();
           if (
@@ -108,44 +106,46 @@ export default function Leaderboard({ currentStudentId = 1 }) {
   return (
     <section className="w-full flex flex-col gap-6" aria-label="Campus Leaderboards">
       {/* Header and Tab Switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-2 border-slate-800 pb-5">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🏆</span>
-            <h2 className="text-2xl font-black text-slate-100 font-display tracking-tight">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800/80 pb-5">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/30 flex items-center justify-center text-violet-400">
+            <Trophy className="w-5 h-5 text-violet-400" />
+          </div>
+          <div>
+            <h2 className="text-xl sm:text-2xl font-bold text-white font-display tracking-tight">
               Hall of Fame Leaderboard
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+              Celebrating hostel diners leading the fight against food wastage and sharing flavor insights.
+            </p>
           </div>
-          <p className="text-sm text-slate-400 mt-1">
-            Celebrating hostel diners leading the fight against food wastage and sharing flavor insights.
-          </p>
         </div>
 
         {/* Tab Switcher Pills */}
-        <div className="inline-flex p-1 rounded-xl bg-slate-950/80 border-2 border-slate-800 shadow-inner self-start sm:self-auto">
+        <div className="inline-flex p-1 rounded-xl bg-slate-950/70 border border-slate-800 shadow-sm self-start sm:self-auto">
           <button
             type="button"
             onClick={() => setActiveTab('streak')}
-            className={`px-3.5 py-2 rounded-lg text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'streak'
-                ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-[0_0_15px_rgba(245,158,11,0.5),2px_2px_0px_#92400E]'
+                ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 shadow-md shadow-amber-500/25 font-black'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <span>🔥</span>
+            <Flame className="w-3.5 h-3.5" />
             <span>Zero-Waste Champions</span>
           </button>
 
           <button
             type="button"
             onClick={() => setActiveTab('review')}
-            className={`px-3.5 py-2 rounded-lg text-xs font-black transition-all cursor-pointer flex items-center gap-1.5 ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
               activeTab === 'review'
-                ? 'bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.5),2px_2px_0px_#581C87]'
+                ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md shadow-violet-500/25 font-black'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <span>⭐</span>
+            <Star className="w-3.5 h-3.5" />
             <span>Review Superstars</span>
           </button>
         </div>
@@ -165,9 +165,9 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="order-2 md:order-1 relative bg-slate-900/80 backdrop-blur-xl border-2 border-slate-400/60 rounded-2xl p-5 shadow-[4px_4px_0px_#64748B] flex flex-col items-center text-center gap-3"
+                className="order-2 md:order-1 relative glass-panel p-5 flex flex-col items-center text-center gap-3.5 border-slate-700/80 hover:border-slate-500/80 transition-all shadow-lg"
               >
-                <div className="absolute -top-3.5 bg-slate-200 text-slate-950 font-black px-3 py-0.5 rounded-full text-xs uppercase tracking-wider shadow-[0_0_12px_rgba(226,232,240,0.6)]">
+                <div className="absolute -top-3.5 bg-slate-300 text-slate-950 font-black px-3.5 py-0.5 rounded-full text-xs uppercase tracking-wider shadow-md">
                   2nd Place 🥈
                 </div>
 
@@ -176,54 +176,54 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                 </div>
 
                 <div>
-                  <h4 className="font-extrabold text-slate-100 text-base font-display">
+                  <h4 className="font-bold text-white text-base font-display">
                     {top2.name}
                   </h4>
-                  <span className="text-[11px] font-bold text-slate-400">
+                  <span className="text-[11px] font-semibold text-slate-400">
                     {top2.tier || getTierName(top2.streak_count, top2.xp_points)}
                   </span>
                 </div>
 
-                <div className="w-full bg-slate-950/70 border border-slate-800 rounded-xl p-2.5 flex items-center justify-around text-xs">
+                <div className="w-full bg-slate-950/60 border border-slate-800 rounded-xl p-2.5 flex items-center justify-around text-xs">
                   <div>
                     <span className="text-slate-500 text-[10px] block font-mono">
                       {activeTab === 'streak' ? 'Streak' : 'Reviews'}
                     </span>
-                    <strong className="text-amber-400 font-bold">
+                    <strong className="text-amber-400 font-bold font-display">
                       {activeTab === 'streak' ? `🔥 ${top2.streak_count}d` : `⭐ ${top2.review_count}`}
                     </strong>
                   </div>
                   <div className="h-6 w-px bg-slate-800" />
                   <div>
                     <span className="text-slate-500 text-[10px] block font-mono">XP</span>
-                    <strong className="text-purple-400 font-bold">{top2.xp_points} XP</strong>
+                    <strong className="text-violet-400 font-bold font-display">{top2.xp_points} XP</strong>
                   </div>
                 </div>
               </motion.div>
             )}
 
-            {/* Rank 1: Gold 🥇 (Elevated & Glowing) */}
+            {/* Rank 1: Gold 🥇 (Elevated & Radiant) */}
             {top1 && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="order-1 md:order-2 relative bg-slate-900/90 backdrop-blur-2xl border-2 border-amber-400 rounded-2xl p-6 shadow-[5px_5px_0px_#B45309,0_0_35px_rgba(245,158,11,0.25)] flex flex-col items-center text-center gap-3.5 md:-translate-y-3 z-10"
+                className="order-1 md:order-2 relative glass-panel p-6 flex flex-col items-center text-center gap-4 border-amber-400/80 shadow-xl shadow-amber-500/15 md:-translate-y-3 z-10"
               >
-                <div className="absolute -top-4 bg-gradient-to-r from-amber-400 to-yellow-300 text-slate-950 font-black px-4 py-1 rounded-full text-xs uppercase tracking-wider shadow-[0_0_18px_rgba(245,158,11,0.8)] flex items-center gap-1">
+                <div className="absolute -top-4 bg-gradient-to-r from-amber-400 to-yellow-400 text-slate-950 font-black px-4 py-1 rounded-full text-xs uppercase tracking-wider shadow-md shadow-amber-500/40 flex items-center gap-1">
                   <span>👑</span>
                   <span>Champion 1st</span>
                 </div>
 
-                <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 font-black text-2xl flex items-center justify-center border-4 border-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.7)] mt-2">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 font-black text-2xl flex items-center justify-center border-4 border-amber-300 shadow-lg shadow-amber-500/40 mt-2">
                   {getInitials(top1.name)}
                 </div>
 
                 <div>
-                  <h4 className="font-black text-amber-200 text-lg font-display">
+                  <h4 className="font-extrabold text-amber-200 text-lg font-display">
                     {top1.name}
                   </h4>
-                  <span className="text-xs font-bold text-amber-400">
+                  <span className="text-xs font-semibold text-amber-400">
                     {top1.tier || getTierName(top1.streak_count, top1.xp_points)}
                   </span>
                 </div>
@@ -233,14 +233,14 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                     <span className="text-slate-400 text-[10px] block font-mono uppercase">
                       {activeTab === 'streak' ? 'Streak' : 'Reviews'}
                     </span>
-                    <strong className="text-amber-300 text-sm font-black">
+                    <strong className="text-amber-300 text-sm font-black font-display">
                       {activeTab === 'streak' ? `🔥 ${top1.streak_count} Days` : `⭐ ${top1.review_count} Reviews`}
                     </strong>
                   </div>
                   <div className="h-7 w-px bg-amber-400/30" />
                   <div>
                     <span className="text-slate-400 text-[10px] block font-mono uppercase">Total XP</span>
-                    <strong className="text-purple-300 text-sm font-black">{top1.xp_points} XP</strong>
+                    <strong className="text-violet-300 text-sm font-black font-display">{top1.xp_points} XP</strong>
                   </div>
                 </div>
               </motion.div>
@@ -252,9 +252,9 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
-                className="order-3 relative bg-slate-900/80 backdrop-blur-xl border-2 border-amber-700/70 rounded-2xl p-5 shadow-[4px_4px_0px_#78350F] flex flex-col items-center text-center gap-3"
+                className="order-3 relative glass-panel p-5 flex flex-col items-center text-center gap-3.5 border-amber-700/60 hover:border-amber-600/70 transition-all shadow-lg"
               >
-                <div className="absolute -top-3.5 bg-amber-700 text-white font-black px-3 py-0.5 rounded-full text-xs uppercase tracking-wider shadow-[0_0_12px_rgba(180,83,9,0.5)]">
+                <div className="absolute -top-3.5 bg-amber-700 text-white font-black px-3.5 py-0.5 rounded-full text-xs uppercase tracking-wider shadow-md">
                   3rd Place 🥉
                 </div>
 
@@ -263,27 +263,27 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                 </div>
 
                 <div>
-                  <h4 className="font-extrabold text-slate-100 text-base font-display">
+                  <h4 className="font-bold text-white text-base font-display">
                     {top3.name}
                   </h4>
-                  <span className="text-[11px] font-bold text-amber-500">
+                  <span className="text-[11px] font-semibold text-amber-500">
                     {top3.tier || getTierName(top3.streak_count, top3.xp_points)}
                   </span>
                 </div>
 
-                <div className="w-full bg-slate-950/70 border border-slate-800 rounded-xl p-2.5 flex items-center justify-around text-xs">
+                <div className="w-full bg-slate-950/60 border border-slate-800 rounded-xl p-2.5 flex items-center justify-around text-xs">
                   <div>
                     <span className="text-slate-500 text-[10px] block font-mono">
                       {activeTab === 'streak' ? 'Streak' : 'Reviews'}
                     </span>
-                    <strong className="text-amber-400 font-bold">
+                    <strong className="text-amber-400 font-bold font-display">
                       {activeTab === 'streak' ? `🔥 ${top3.streak_count}d` : `⭐ ${top3.review_count}`}
                     </strong>
                   </div>
                   <div className="h-6 w-px bg-slate-800" />
                   <div>
                     <span className="text-slate-500 text-[10px] block font-mono">XP</span>
-                    <strong className="text-purple-400 font-bold">{top3.xp_points} XP</strong>
+                    <strong className="text-violet-400 font-bold font-display">{top3.xp_points} XP</strong>
                   </div>
                 </div>
               </motion.div>
@@ -291,17 +291,19 @@ export default function Leaderboard({ currentStudentId = 1 }) {
           </div>
 
           {/* Ranked Table: 4th to 10th Place */}
-          <div className="flex flex-col gap-2.5 bg-slate-900/70 border-2 border-slate-800 rounded-2xl p-4 sm:p-5 shadow-[4px_4px_0px_#1E293B]">
-            <div className="flex items-center justify-between text-xs font-mono font-bold text-slate-500 px-3 pb-2 border-b border-slate-800/80">
-              <span className="w-12">Rank</span>
-              <span className="flex-1">Student</span>
-              <span className="hidden sm:block w-32 text-center">Badge Tier</span>
-              <span className="w-24 text-center">
-                {activeTab === 'streak' ? 'Clean Streak' : 'Reviews'}
+          <div className="glass-panel p-4 sm:p-5 shadow-xl flex flex-col gap-3">
+            {/* Table Header */}
+            <div className="grid grid-cols-12 gap-2 text-xs font-mono font-bold text-slate-400 px-3 pb-2 border-b border-slate-800/80">
+              <span className="col-span-2 sm:col-span-1 text-center">Rank</span>
+              <span className="col-span-6 sm:col-span-5">Student</span>
+              <span className="hidden sm:block sm:col-span-3 text-center">Badge Tier</span>
+              <span className="col-span-2 text-center">
+                {activeTab === 'streak' ? 'Streak' : 'Reviews'}
               </span>
-              <span className="w-20 text-right">XP</span>
+              <span className="col-span-2 sm:col-span-1 text-right">XP</span>
             </div>
 
+            {/* Table Rows */}
             <div className="flex flex-col gap-2">
               <AnimatePresence mode="popLayout">
                 {runnersUp.map((student) => {
@@ -310,32 +312,34 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                   return (
                     <motion.div
                       key={student.student_id || student.rank}
-                      initial={{ opacity: 0, x: -10 }}
+                      initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 10 }}
-                      whileHover={{ x: 3 }}
+                      exit={{ opacity: 0, x: 8 }}
+                      whileHover={{ x: 2 }}
                       transition={{ duration: 0.15 }}
-                      className={`flex items-center justify-between gap-3 p-3 rounded-xl border transition-colors ${
+                      className={`grid grid-cols-12 gap-2 items-center p-3 rounded-xl border transition-colors ${
                         isCurrent
-                          ? 'bg-emerald-950/40 border-emerald-500/70 shadow-[0_0_12px_rgba(16,185,129,0.15)]'
-                          : 'bg-slate-950/60 border-slate-800/80 hover:border-slate-700'
+                          ? 'bg-emerald-950/30 border-emerald-500/50 shadow-sm shadow-emerald-500/10'
+                          : 'bg-slate-950/50 border-slate-800/80 hover:border-slate-700'
                       }`}
                     >
                       {/* Rank Number Pill */}
-                      <span className="w-12 flex items-center justify-center font-mono font-black text-xs text-slate-400 bg-slate-900 border border-slate-800 py-1 rounded-md">
-                        #{student.rank}
-                      </span>
+                      <div className="col-span-2 sm:col-span-1 flex justify-center">
+                        <span className="font-mono font-bold text-xs text-slate-400 bg-slate-900 border border-slate-800 px-2 py-0.5 rounded-md">
+                          #{student.rank}
+                        </span>
+                      </div>
 
                       {/* Avatar & Name */}
-                      <div className="flex-1 flex items-center gap-3 min-w-0">
-                        <div className="w-9 h-9 rounded-full bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center flex-shrink-0">
+                      <div className="col-span-6 sm:col-span-5 flex items-center gap-3 min-w-0">
+                        <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center flex-shrink-0">
                           {getInitials(student.name)}
                         </div>
                         <div className="truncate">
-                          <span className="font-extrabold text-sm text-slate-200 block truncate">
+                          <span className="font-bold text-sm text-slate-200 block truncate">
                             {student.name}
                             {isCurrent && (
-                              <span className="ml-2 text-[10px] bg-emerald-500 text-slate-950 font-black px-1.5 py-0.2 rounded uppercase">
+                              <span className="ml-2 text-[10px] bg-emerald-500 text-slate-950 font-black px-1.5 py-0.5 rounded uppercase">
                                 You
                               </span>
                             )}
@@ -347,25 +351,25 @@ export default function Leaderboard({ currentStudentId = 1 }) {
                       </div>
 
                       {/* Badge Tier (Desktop) */}
-                      <div className="hidden sm:block w-32 text-center text-xs font-semibold text-slate-400 truncate">
+                      <div className="hidden sm:block sm:col-span-3 text-center text-xs font-medium text-slate-400 truncate">
                         {student.tier || getTierName(student.streak_count, student.xp_points)}
                       </div>
 
                       {/* Metric (Streak or Reviews) */}
-                      <div className="w-24 text-center font-bold text-xs">
+                      <div className="col-span-2 text-center font-bold text-xs">
                         {activeTab === 'streak' ? (
-                          <span className="text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-full inline-block">
+                          <span className="text-amber-400 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-full inline-block font-display">
                             🔥 {student.streak_count}d
                           </span>
                         ) : (
-                          <span className="text-purple-400 bg-purple-500/10 border border-purple-500/30 px-2 py-0.5 rounded-full inline-block">
+                          <span className="text-violet-400 bg-violet-500/10 border border-violet-500/30 px-2 py-0.5 rounded-full inline-block font-display">
                             ⭐ {student.review_count}
                           </span>
                         )}
                       </div>
 
                       {/* XP Points */}
-                      <div className="w-20 text-right font-mono font-black text-xs text-slate-300">
+                      <div className="col-span-2 sm:col-span-1 text-right font-mono font-bold text-xs text-slate-300">
                         {student.xp_points} XP
                       </div>
                     </motion.div>
